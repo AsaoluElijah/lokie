@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#f44336">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+    <title>Lokie</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/framework7.ios.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/framework7@3.5.0/css/framework7.ios.css"> -->
+    <link rel="stylesheet" href="css/icons.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="apple-touch-icon" href="img/f7-icon-square.png">
+    <link rel="icon" href="img/f7-icon.png">
+</head>
+
+<body class="color-theme-purple">
+    <div id="app">
+        <div class="statusbar"></div>
+        <div class="panel panel-left panel-cover">
+            <div class="page">
+                <div class="page-content">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="view view-main view-init ios-edges" data-url="/">
+            <div class="page">
+                <div class="navbar">
+                    <div class="navbar-inner sliding">
+                        <div class="left">
+                            <a href="#" onclick="goBack()" class="link back">
+                                <i class="icon icon-back"></i>
+                                <span class="ios-only">Back</span>
+                            </a>
+                        </div>
+                        <div class="title"></div>
+                    </div>
+                </div>
+                <div class="page-content" id="trustee_page">
+                    <div class="block">
+                        <div class="title-page">
+                            <div class="title-page-with-link">
+                                <h1>My Trustees</h1>
+                            </div>
+                            <div class="subtitle-page">
+                                This people will continue to see your location on Lokie.
+                                <br> Click a trustee to see more details about them.
+                                <p>
+                                    <strong>NOTE:</strong> You can have a maximum of 5 trustees
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Search -->
+                        <div class="searchbar-page page-no-padding">
+                            <form class="searchbar">
+                                <div class="searchbar-input-wrap">
+                                    <input placeholder="Search for Trustee" type="search">
+                                    <i class="searchbar-icon"></i>
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- End Search -->
+
+                        <div class="list pages-list">
+                            <ul id="trustee_list">
+                                <li>
+                                    <a href="#" class="item-link item-content">
+                                        <div class="item-media"><img src="./img/seller3.png" alt="page1" class="seller-img-list" /></div>
+                                        <div class="item-inner">
+                                            <div class="item-title">
+                                                <span>Anonymous</span>
+                                                <div class="item-header">Trustee Since 2016</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <a href="/ad_trustee/" class="col button button-fill color-blue" style="height: auto;padding:6px;font-size: 16px;">
+                                <span>
+                                        Add New
+                                    </span>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="fab fab-right-bottom">
+        <a href="#">
+            <!-- First icon is visible when Speed Dial actions are closed -->
+            <i class="icon f7-icons">add</i>
+            <!-- Second icon is visible when Speed Dial actions are opened -->
+            <i class="icon f7-icons">close</i>
+        </a>
+        <!-- Speed Dial action buttons -->
+        <div class="fab-buttons fab-buttons-bottom">
+            <a href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+        </div>
+    </div>
+    <script src="js/framework7.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/framework7/4.5.2/js/framework7.min.js" integrity="sha256-TGQ32roI0qkzBrtmvEcwDZq7EPFMmkYabGd/1T+F+YA=" crossorigin="anonymous"></script> -->
+    <script src="js/routes.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+        app.request.get('php/trustee_list.php', {
+                userId: 1
+            },
+            function(data) {
+                document.getElementById('trustee_list').innerHTML = data;
+            });
+    </script>
+</body>
+
+</html>

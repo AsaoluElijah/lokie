@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#f44336">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+    <title>Lokie</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/framework7.ios.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/framework7@3.5.0/css/framework7.ios.css"> -->
+    <link rel="stylesheet" href="css/icons.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="apple-touch-icon" href="img/f7-icon-square.png">
+    <link rel="icon" href="img/f7-icon.png">
+</head>
+
+<body class="color-theme-purple">
+    <div id="app">
+        <div class="statusbar"></div>
+        <div class="panel panel-left panel-cover">
+            <div class="page">
+                <div class="page-content">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="view view-main view-init ios-edges" data-url="/">
+            <div class="page">
+                <div class="navbar">
+                    <div class="navbar-inner sliding">
+                        <div class="left">
+                            <!-- <a href="#" class="link back">
+                                <i class="icon icon-back"></i>
+                                <span class="ios-only">Back</span>
+                            </a> -->
+                        </div>
+                        <div class="title">Invitation Sent 📌</div>
+                    </div>
+                </div>
+                <div class="toolbar tabbar tabbar-labels">
+                    <div class="toolbar-inner"><a href="index.html" class="link external tab-link tab-link-active"><i
+                                class="material-icons">home</i> <span class="tabbar-label">Home</span></a> <a href="/invite/" class="tab-link"><i class="material-icons">send</i> <span
+                                class="tabbar-label">Invite</span></a> <a href="/trustees/" class="tab-link"><i
+                                class="material-icons">supervisor_account</i> <span
+                                class="tabbar-label">Trustees</span></a> <a href="/pages/" class="tab-link"><i
+                                class="material-icons">menu</i> <span class="tabbar-label">Menu</span></a></div>
+                </div>
+                <div class="page-content">
+                    <div class="block">
+                        <div class="title-page">
+                            <div class="title-page-with-link">
+                                <h1>Invitation Sent</h1>
+                            </div>
+                            <div class="subtitle-page">Once <span id="inviteEmail"></span> accepts your invitation, your locations will be shared real time below</div>
+                        </div>
+
+                        <div id="map" class="meet-map" style="width: auto;height: 400px;"></div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="fab fab-right-bottom">
+        <a href="#">
+            <!-- First icon is visible when Speed Dial actions are closed -->
+            <i class="icon f7-icons">add</i>
+            <!-- Second icon is visible when Speed Dial actions are opened -->
+            <i class="icon f7-icons">close</i>
+        </a>
+        <!-- Speed Dial action buttons -->
+        <div class="fab-buttons fab-buttons-bottom">
+            <a href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+        </div>
+    </div>
+    <script src="js/framework7.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/framework7/4.5.2/js/framework7.min.js" integrity="sha256-TGQ32roI0qkzBrtmvEcwDZq7EPFMmkYabGd/1T+F+YA=" crossorigin="anonymous"></script> -->
+    <script src="js/routes.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        var inviteEmail = localStorage.inviteEmail
+        document.querySelector('#inviteEmail').innerHTML = inviteEmail;
+    </script>
+    <script>
+        function initMap() {
+            var directionsRenderer = new google.maps.DirectionsRenderer;
+            var directionsService = new google.maps.DirectionsService;
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 14,
+                center: {
+                    lat: 37.77,
+                    lng: -122.447
+                }
+            });
+            directionsRenderer.setMap(map);
+
+            calculateAndDisplayRoute(directionsService, directionsRenderer);
+            // document.getElementById('mode').addEventListener('change', function() {
+            //     calculateAndDisplayRoute(directionsService, directionsRenderer);
+            // });
+        }
+
+        function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+            // var selectedMode = document.getElementById('mode').value;
+            var selectedMode = 'DRIVING';
+            directionsService.route({
+                origin: {
+                    lat: 37.77,
+                    lng: -122.447
+                }, // Haight.
+                destination: {
+                    lat: 37.768,
+                    lng: -122.511
+                }, // Ocean Beach.
+                // Note that Javascript allows us to access the constant
+                // using square brackets and a string value as its
+                // "property."
+                travelMode: google.maps.TravelMode[selectedMode]
+            }, function(response, status) {
+                if (status == 'OK') {
+                    directionsRenderer.setDirections(response);
+                } else {
+                    window.alert('Directions request failed due to ' + status);
+                }
+            });
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmwbZFOM6zFZpFMOng9mZMc-UzQtXvsaU&callback=initMap">
+    </script>
+</body>
+
+</html>

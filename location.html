@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>HTML5 Geolocation</title>
+    <script type="text/javascript">
+        function showPosition() {
+            if (navigator.geolocation) {
+                if (navigator.onLine === false) {
+                    return "offline";
+                } else {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        var positionInfo = position.coords.latitude + " " + position.coords.longitude;
+                        var positionInfo = "Your current position is (" + "Latitude: " + position.coords.latitude + ", " + "Longitude: " + position.coords.longitude + ")";
+                        document.getElementById("result").innerHTML = positionInfo;
+                        return positionInfo;
+                    });
+                }
+            } else {
+                alert("Sorry, your browser does not support HTML5 geolocation.");
+            }
+        }
+        // console.log(showPosition())
+        // var a = showPosition()
+        // if (a == "offline") {
+        //     console.log("You are offline")
+        // }
+    </script>
+</head>
+
+<body>
+    <div id="result">
+        <!--Position information will be inserted here-->
+    </div>
+    <button type="button" onclick="showPosition();">Show Position</button>
+</body>
+
+</html>
