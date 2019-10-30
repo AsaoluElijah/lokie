@@ -43,20 +43,31 @@ class App extends Connect
                 VALUES('$name','$email','$password')";
             $result = $this->connect()->query($query);
             if ($result) {
-                return 'success';
+                $q = "SELECT * FROM user WHERE email = '$email'";
+                $re = $this->connect()->query($q);
+                $rw = mysqli_fetch_array($re);
+
+                $detail = array(
+                    "id" => $rw['id'],
+                    "name" => $rw['name'],
+                    "email" => $rw['email']
+                );
+                $data = json_encode($detail);
+                // "{id:".$row['id'].", name:"."'".$row['name']."'".", email:"."'".$row['email']."'"."}"
+                return $data;
             } else {
                 return 'failed';
             }
         }
     }
 
-    function addTrustee($trusteEmail, $userId)
+    function addTrustee($trusteEmail, $userId, $phone)
     {
-        $query = "SELECT * FROM user WHERE id = {$userId}";
+        $query = "SELECT * FROM trustee WHERE user_id = {$userId}";
         $result = $this->connect()->query($query);
-        $row = mysqli_fetch_array($result);
-        $trusteeCount = $row['trustee_count'];
-        if ($trusteeCount >= 5) {
+        $row = mysqli_num_rows($result);
+        // $trusteeCount = $row['trustee_count'];
+        if ($row >= 5) {
             return "maximum";
         } else {
             // Code to check if trustee has already been added by the user;
@@ -65,7 +76,7 @@ class App extends Connect
                 return 'exist';
             }else {
                 // If trustee does not exist, add them to DB
-            $addNewTrustee = $this->addNewTrustee($trusteEmail,$userId);
+            $addNewTrustee = $this->addNewTrustee($trusteEmail,$userId, $phone);
             if ($addNewTrustee === true) {
                 $this->updateTrusteeCount(+1,$userId);
                 return 'success';
@@ -76,10 +87,10 @@ class App extends Connect
         }
     }
 
-    function addNewTrustee($trusteEmail,$userId)
+    function addNewTrustee($trusteEmail,$userId, $phone)
     {
-        $query = "INSERT INTO trustee(user_id,trustee_email) 
-            VALUES('$userId' , '$trusteEmail')";
+        $query = "INSERT INTO trustee(user_id,trustee_email,trustee_phone) 
+            VALUES('$userId' , '$trusteEmail', '$phone')";
         $result = $this->connect()->query($query);
         if ($result) {
             return true;
