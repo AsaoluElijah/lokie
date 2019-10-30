@@ -1,6 +1,8 @@
 if (localStorage.userdata == undefined) {
     // console.log('Please login')
-    app.router.navigate({ url: '/login/' })
+    app.router.navigate({
+        url: '/login/',
+    });
 } else {
     userData = JSON.parse(localStorage.userdata);
     localStorage.userId = Number(userData.id);
@@ -84,7 +86,7 @@ function inviteUser() {
     } else if (validateEmail(email) == false) {
         app.dialog.alert('Invalid Email Address', 'Error');
     } else {
-        validateEmail(email);
+        // validateEmail(email);
 
         localStorage.inviteEmail = email;
         app.dialog.preloader('Loading, please wait');
@@ -98,12 +100,19 @@ function inviteUser() {
                     app.dialog.close();
                     app.dialog.alert('Unable To Send Request', 'Error');
                 } else {
+                    localStorage.inviteHash = data;
                     app.dialog.close();
                     location.href = './full_map.html';
                 }
             }
         );
     }
+}
+
+// Logout
+function logout() {
+    localStorage.userdata = 'undefined'
+    location.href = 'login.html';
 }
 
 // SIGNUP
@@ -129,6 +138,7 @@ function signUp() {
                 } else if (data == "failed") {
                     app.dialog.alert('Unknown error occured', 'Error');
                 } else {
+                    localStorage.userdata = data;
                     app.dialog.alert('Account created successfully', 'Success', function() {
                         // Change to route 👇
                         location.href = "index.html"
@@ -143,8 +153,9 @@ function signUp() {
 function addTrustee() {
     var formData = app.form.convertToData('#addTrusteForm');
     var email = formData.email;
-    if (email == "") {
-        app.dialog.alert('Please enter a value', 'Error');
+    var phone = formData.phone;
+    if (email == "" || phone == "") {
+        app.dialog.alert('All fields are required', 'Error');
     } else if (validateEmail(email) == false) {
         app.dialog.alert('Invalid Email Address', 'Error');
     } else {
@@ -152,6 +163,7 @@ function addTrustee() {
         setTimeout(function() {
             app.request.get('./php/add_trustee.php', {
                 trustee_email: email,
+                phone: phone,
                 user_id: localStorage.userId
                     // Change userId value from 1 to normal 👌
             }, function(data) {
