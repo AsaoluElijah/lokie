@@ -16,28 +16,69 @@
     <link rel="stylesheet" href="css/app.css">
     <link rel="apple-touch-icon" href="img/f7-icon-square.png">
     <link rel="icon" href="img/f7-icon.png">
+    <script>
+        // Redirect to login page if infos are not set
+        if (localStorage.userdata == 'undefined') {
+            location.href = 'login.html';
+        }
+    </script>
     <style>
+        div .gmnoprint:last-child {
+            display: none !important;
+        }
+        
+        .gm-style-cc {
+            display: none !important;
+        }
+        
+        .gm-svpc {
+            display: none !important;
+        }
+        
+        @-webkit-keyframes bubble {
+            0% {
+                -webkit-box-shadow: 0 0 0 0 rgba(0, 80, 252, 0.7);
+            }
+            70% {
+                -webkit-box-shadow: 0 0 0 25px rgba(0, 46, 252, 0.3);
+            }
+            100% {
+                -webkit-box-shadow: 0 0 0 0 rgba(0, 67, 252, 0.3);
+            }
+        }
+        
         @keyframes bubble {
-            10% {
-                background: rgba(17, 91, 252, 0.151);
+            0% {
+                -moz-box-shadow: 0 0 0 0 rgba(0, 118, 252, 0.7);
+                box-shadow: 0 0 0 0 rgba(0, 80, 252, 0.7);
             }
-            20% {
-                background: #0026ff3a;
+            70% {
+                -moz-box-shadow: 0 0 0 25px rgba(0, 4, 252, 0.3);
+                box-shadow: 0 0 0 25px rgba(0, 4, 252, 0);
             }
-            30% {
-                background: #3700ff36;
+            100% {
+                -moz-box-shadow: 0 0 0 0 rgba(0, 46, 252, 0.3);
+                box-shadow: 0 0 0 0 rgba(4, 0, 252, 0);
             }
         }
         
         .send-alert-icon {
-            padding: 17px;
+            padding: 15px;
             color: #007aff;
             font-size: 50px;
             background: rgba(0, 47, 255, 0.13);
             border-radius: 50px;
             animation-name: bubble;
-            animation-duration: 3s;
+            animation-duration: 2s;
             animation-iteration-count: infinite;
+        }
+        
+        #googlemap {
+            width: auto;
+            height: 320px;
+            background: #e5e9e8;
+            background-image: url('img/new/loading.gif');
+            background-position: center;
         }
     </style>
 </head>
@@ -83,7 +124,7 @@
                                     </div>
                                 </a>
                             </li>
-                            <li style="margin-top: 20px;">
+                            <li style="margin-top: 20px;" onclick="logout()">
                                 <a href="#" class="item-link item-content">
                                     <div class="item-media color-blue"><i class="material-icons">power_settings_new</i></div>
                                     <div class="item-inner">
@@ -113,7 +154,7 @@
                 <div class="toolbar tabbar tabbar-labels">
                     <div class="toolbar-inner"><a href="/" class="tab-link tab-link-active"><i
                                 class="material-icons">home</i> <span class="tabbar-label">Home</span></a> <a href="/invite/" class="tab-link"><i class="material-icons">send</i> <span
-                                class="tabbar-label">Invite</span></a> <a href="/trustees/" class="tab-link"><i
+                                class="tabbar-label">Invite</span></a> <a href="trustee.html" class="tab-link link external"><i
                                 class="material-icons">supervisor_account</i> <span
                                 class="tabbar-label">Trustees</span></a>
                         <a href="" class="tab-link panel-open" data-panel="right"><i
@@ -133,7 +174,7 @@
                         <div class="searchbar-page">
                             <form class="searchbar">
                                 <div class="searchbar-input-wrap">
-                                    <input placeholder="Search for a place" id="search-place" type="text">
+                                    <input placeholder="Search for a place" id="pac-input" type="text">
                                     <i class="searchbar-icon"></i>
                                     <span class="input-clear-button"></span>
                                 </div>
@@ -149,13 +190,21 @@
                         <div class="section">
                             <div class="title-section-with-link">
                                 <h3>My Location</h3>
+                                <!-- Toggle satellite view -->
+
+                                <li style="margin-right: 20px;list-style-type:none;">
+                                    <span>Satellite</span>
+                                    <label class="toggle toggle-init color-blue">
+                                        <input type="checkbox" onchange="">
+                                        <span class="toggle-icon"></span>
+                                    </label>
+                                </li>
+                                <!-- Toggle satellite view end -->
                             </div>
-                            <!-- <a href="/full_map/"> -->
                             <div class="section-content">
-                                <div id="googlmap" style="width: auto;height: 320px;"></div>
+                                <div id="googlemap" style=""></div>
 
                             </div>
-                            <!-- </a> -->
                         </div>
 
                         <!-- Quick Action Section -->
@@ -245,20 +294,6 @@
             </div>
         </div>
     </div>
-    <div class="fab fab-right-bottom">
-        <a href="#">
-            <!-- First icon is visible when Speed Dial actions are closed -->
-            <i class="icon f7-icons">add</i>
-            <!-- Second icon is visible when Speed Dial actions are opened -->
-            <i class="icon f7-icons">close</i>
-        </a>
-        <!-- Speed Dial action buttons -->
-        <div class="fab-buttons fab-buttons-bottom">
-            <a href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-        </div>
-    </div>
     <script src="js/framework7.min.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/framework7/4.5.2/js/framework7.min.js" integrity="sha256-TGQ32roI0qkzBrtmvEcwDZq7EPFMmkYabGd/1T+F+YA=" crossorigin="anonymous"></script> -->
     <script src="js/routes.js"></script>
@@ -268,13 +303,23 @@
     <script>
         function sendAlert() {
             app.request.get('php/PHPMailer/send_alert.php', {
-                    sendMail: true,
-                    userId: 1,
+                    sendAlert: true,
+                    userEmail: localStorage.userEmail,
+                    userId: Number(localStorage.userId)
                 },
                 function(data) {
-                    document.querySelector('.send-alert-icon').style.color = "#F44336";
-                    app.dialog.alert('Notification Sent ✔', 'Success');
-                    console.log(data + '🔥');
+                    var regex = /(false)/
+                    var check = regex.test(data);
+                    if (check == true) {
+                        console.log('Unable to send notification');
+                        app.dialog.alert('Unable to send notification', 'Error');
+                    } else if (data == 'You have no trustee') {
+                        app.dialog.alert('You currently do not have any trustee', 'Error');
+                    } else {
+                        document.querySelector('.send-alert-icon').style.color = "#F44336";
+                        app.dialog.alert('Notification Sent', 'Success');
+                        console.log(data);
+                    }
                 }
             )
 
@@ -287,77 +332,17 @@
         var map, infoWindow;
 
         function initMap() {
-            map = new google.maps.Map(document.getElementById('googlmap'), {
+            map = new google.maps.Map(document.getElementById('googlemap'), {
                 center: {
                     lat: -34.397,
                     lng: 150.644
                 },
-                zoom: 17,
+                zoom: 8,
                 // Or roadmap
                 // mapTypeId: 'satellite'
             });
             infoWindow = new google.maps.InfoWindow;
 
-            // *******************
-            var input = document.getElementById('search-place');
-            var searchBox = new google.maps.places.SearchBox(input);
-            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-            // Bias the SearchBox results towards current map's viewport.
-            map.addListener('bounds_changed', function() {
-                searchBox.setBounds(map.getBounds());
-            });
-
-            var markers = [];
-            // Listen for the event fired when the user selects a prediction and retrieve
-            // more details for that place.
-            searchBox.addListener('places_changed', function() {
-                var places = searchBox.getPlaces();
-
-                if (places.length == 0) {
-                    return;
-                }
-
-                // Clear out the old markers.
-                markers.forEach(function(marker) {
-                    marker.setMap(null);
-                });
-                markers = [];
-
-                // For each place, get the icon, name and location.
-                var bounds = new google.maps.LatLngBounds();
-                places.forEach(function(place) {
-                    if (!place.geometry) {
-                        console.log("Returned place contains no geometry");
-                        return;
-                    }
-                    var icon = {
-                        url: place.icon,
-                        size: new google.maps.Size(71, 71),
-                        origin: new google.maps.Point(0, 0),
-                        anchor: new google.maps.Point(17, 34),
-                        scaledSize: new google.maps.Size(25, 25)
-                    };
-
-                    // Create a marker for each place.
-                    markers.push(new google.maps.Marker({
-                        map: map,
-                        icon: icon,
-                        title: place.name,
-                        position: place.geometry.location
-                    }));
-
-                    if (place.geometry.viewport) {
-                        // Only geocodes have viewport.
-                        bounds.union(place.geometry.viewport);
-                    } else {
-                        bounds.extend(place.geometry.location);
-                    }
-                });
-                map.fitBounds(bounds);
-            });
-
-            // *********************
             // Try HTML5 geolocation.
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
@@ -379,19 +364,6 @@
                     // Map marker end
                     var lat = position.coords.latitude;
                     var long = position.coords.longitude;
-                    setInterval(function() {
-                            app.request.get('php/update_location.php', {
-                                    long: long,
-                                    lat: lat,
-                                    userId: 1,
-                                    update: true
-                                },
-                                function(data) {
-                                    console.log(data + '🔥');
-                                }
-                            )
-                        },
-                        1000)
                 }, function() {
                     handleLocationError(true, infoWindow, map.getCenter());
                 });
@@ -408,11 +380,12 @@
                 'Error: Your browser doesn\'t support geolocation.');
             infoWindow.open(map);
         }
-        // API KEY = AIzaSyDmwbZFOM6zFZpFMOng9mZMc-UzQtXvsaU
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmwbZFOM6zFZpFMOng9mZMc-UzQtXvsaU&libraries=places&callback=initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmwbZFOM6zFZpFMOng9mZMc-UzQtXvsaU&callback=initMap">
     </script>
 </body>
+
+</html>
 
 </html>
 
