@@ -1,13 +1,9 @@
 <?php
-    // echo sha1($a);
-    $c = date("F d, Y h:i:s A");
-    function a($d, $key)
+    function a()
     {
         $key = date("F d, Y h:i:s A");
-        echo $d." ".$key;
+        return sha1($key);
     }
-    $a = date("F d, Y h:i:s A");
-    $c = a('Date1:',$a);
-    echo "<br>";
-    a('Date2','');
-?>
+    $c = a();
+    echo $c;
+    ?>
