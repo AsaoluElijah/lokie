@@ -14,7 +14,9 @@ require('./src/SMTP.php');
 
 function sendMail($email, $name, $from)
 {
-    $a =  date("F d, Y h:i:s A");
+    // Get current date,time, minute and second. Hash it and send as key to verify invitation 
+    $date =  date("F d, Y h:i:s A");
+    $key = sha1($date);
     $msgBody = '
 <!DOCTYPE html>
 <html lang="en">
@@ -72,7 +74,7 @@ function sendMail($email, $name, $from)
         <center>
             <img src="meet.jpg" alt="An illustration" style="width: 350px;height: 300px;">
         </center>
-        <p>Howdy, '.$email .'just sent a request to share real time locations on lokie.</p>
+        <p>Howdy, '.$from .' just sent a request to share real time locations on lokie.</p>
         <p>Click accept below to honour the invitation, or click decline to ignore the request.</p>
         <b>Optionally, <a href="lokie.000webhostapp.com/download">download</a> and install lokie on your mobile phone
             for easier access</b>
@@ -135,7 +137,7 @@ function sendMail($email, $name, $from)
     if (!$mail->send()) {
         return 'false';
     } else {
-        return 'true';
+        return $key;
     }
 }
 
@@ -144,10 +146,14 @@ function sendMail($email, $name, $from)
     if (isset($_REQUEST['invite'])) {
         $sender = $_REQUEST['sender'];
         $email = $_REQUEST['email'];
-        $query = "INSERT INTO invite(user1,user2) VALUES('{$sender}','{$email}')";
-        $result = mysqli_query($connection,$query);
         $name = 'Lokie';
         $send = sendMail($email,$name, $sender);
+        
+        if ($send != 'false') {
+            $key =  $send;
+            $query = "INSERT INTO invite(user1,user2,hash) VALUES('{$sender}','{$email}','{$key}')";
+            $result = mysqli_query($connection,$query);
+        }
         echo $send;
         
     }
