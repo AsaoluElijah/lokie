@@ -55,31 +55,54 @@
         <div class="panel panel-right panel-cover panel-filter">
             <div class="navbar">
                 <div class="navbar-inner sliding">
-                    <div class="title">Filter</div>
+                    <div class="title">MENU</div>
                 </div>
             </div>
             <div class="page">
                 <div class="page-content">
-                    <div class="block">
-                        <div class="list no-hairlines">
-                            <ul>
-                                <li class="item-content item-input">
+                    <div class="list">
+                        <ul>
+                            <li style="margin-top: 20px;">
+                                <a href="explore.html" class="link external item-link item-content">
                                     <div class="item-inner">
-                                        <div class="item-input-wrap input-dropdown-wrap">
-                                            <select class="input-with-value">
-                                                <option value="loc1">All</option>
-                                                <option value="loc1">Resturant</option>
-                                                <option value="loc2">Tourist Centers</option>
-                                                <option value="loc2">Hotels</option>
-                                                <option value="loc2">Tourist </option>
-                                            </select>
-                                        </div>
+                                        <div class="item-title">Explore</div>
                                     </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <button class="col button button-fill color-purple">Apply Filter</button>
+                                </a>
+                            </li>
+                            <li style="margin-top: 20px;">
+                                <a href="/invite/" class="item-link item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">Meet Someone</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li style="margin-top: 20px;">
+                                <a href="trustee.html" class="link external item-link item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">My Trustee</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li style="margin-top: 20px;" onclick="logout()">
+                                <a href="#" class="item-link item-content">
+                                    <div class="item-media color-blue"><i class="material-icons">power_settings_new</i></div>
+                                    <div class="item-inner">
+                                        <div class="item-title">Logout</div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
+
+                    <!-- <div class="list links-list">
+                            <ul>
+                                <li><a href="#">Explore</a></li>
+                                <li><a href="#">Meet Someone</a></li>
+                                <li><a href="#">My Trustees</a></li>
+    
+                                <li><a href="#">Logout</a></li>
+                            </ul>
+                        </div> -->
                 </div>
             </div>
         </div>
@@ -88,11 +111,12 @@
             <div class="page no-navbar">
 
                 <div class="toolbar tabbar tabbar-labels">
-                    <div class="toolbar-inner">
-                        <a href="index.html" class="link external tab-link tab-link-active"><i class="material-icons">home</i> <span
-                                        class="tabbar-label">Home</span></a> <a href="/invite/" class="tab-link"><i
-                                        class="material-icons">send</i> <span class="tabbar-label">Invite</span></a> <a href="/trustees/" class="tab-link"><i class="material-icons">supervisor_account</i> <span
-                                        class="tabbar-label">Trustees</span></a> <a href="/pages/" class="tab-link"><i
+                    <div class="toolbar-inner"><a href="index.html" class="link external tab-link tab-link-active"><i
+                                        class="material-icons">home</i> <span class="tabbar-label">Home</span></a> <a href="/invite/" class="tab-link"><i class="material-icons">send</i> <span
+                                        class="tabbar-label">Invite</span></a> <a href="trustee.html" class="tab-link link external"><i
+                                        class="material-icons">supervisor_account</i> <span
+                                        class="tabbar-label">Trustees</span></a>
+                        <a href="" class="tab-link panel-open" data-panel="right"><i
                                         class="material-icons">menu</i> <span class="tabbar-label">Menu</span></a></div>
                 </div>
 
@@ -135,33 +159,10 @@
             </div>
         </div>
     </div>
-    <div class="fab fab-right-bottom">
-        <a href="#">
-            <!-- First icon is visible when Speed Dial actions are closed -->
-            <i class="icon f7-icons">add</i>
-            <!-- Second icon is visible when Speed Dial actions are opened -->
-            <i class="icon f7-icons">close</i>
-        </a>
-        <!-- Speed Dial action buttons -->
-        <div class="fab-buttons fab-buttons-bottom">
-            <a href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-        </div>
-    </div>
     <script src="js/framework7.min.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/framework7/4.5.2/js/framework7.min.js" integrity="sha256-TGQ32roI0qkzBrtmvEcwDZq7EPFMmkYabGd/1T+F+YA=" crossorigin="anonymous"></script> -->
     <script src="js/routes.js"></script>
     <script src="js/app.js"></script>
-    <script>
-        // Show preloader
-        function showLoader() {
-            app.preloader.show();
-            setTimeout(function() {
-                app.preloader.hide();
-            }, 1500);
-        }
-    </script>
 </body>
 
 </html>

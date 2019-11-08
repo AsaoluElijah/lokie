@@ -1,14 +1,10 @@
-if (localStorage.userdata == undefined) {
-    // console.log('Please login')
-    app.router.navigate({
-        url: '/login/',
-    });
-} else {
+if (localStorage.userdata != 'undefined') {
     userData = JSON.parse(localStorage.userdata);
     localStorage.userId = Number(userData.id);
     localStorage.userEmail = userData.email;
     localStorage.userName = userData.name;
     // console.table(userData)
+
 }
 // Function to update trustee page with info from DB.
 // setInterval is used because the div for trustee doesnt exist at first.
@@ -152,9 +148,10 @@ function signUp() {
 
 function addTrustee() {
     var formData = app.form.convertToData('#addTrusteForm');
+    var name = formData.name;
     var email = formData.email;
     var phone = formData.phone;
-    if (email == "" || phone == "") {
+    if (name == "" || email == "" || phone == "") {
         app.dialog.alert('All fields are required', 'Error');
     } else if (validateEmail(email) == false) {
         app.dialog.alert('Invalid Email Address', 'Error');
@@ -162,6 +159,7 @@ function addTrustee() {
         app.dialog.preloader('Loading, please wait');
         setTimeout(function() {
             app.request.get('./php/add_trustee.php', {
+                trusteeName: name,
                 trustee_email: email,
                 phone: phone,
                 user_id: localStorage.userId

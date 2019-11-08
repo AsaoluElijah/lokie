@@ -61,7 +61,7 @@ class App extends Connect
         }
     }
 
-    function addTrustee($trusteEmail, $userId, $phone)
+    function addTrustee($trusteeName,$trusteEmail, $userId, $phone)
     {
         $query = "SELECT * FROM trustee WHERE user_id = {$userId}";
         $result = $this->connect()->query($query);
@@ -76,7 +76,7 @@ class App extends Connect
                 return 'exist';
             }else {
                 // If trustee does not exist, add them to DB
-            $addNewTrustee = $this->addNewTrustee($trusteEmail,$userId, $phone);
+            $addNewTrustee = $this->addNewTrustee($trusteeName,$trusteEmail,$userId, $phone);
             if ($addNewTrustee === true) {
                 $this->updateTrusteeCount(+1,$userId);
                 return 'success';
@@ -87,10 +87,10 @@ class App extends Connect
         }
     }
 
-    function addNewTrustee($trusteEmail,$userId, $phone)
+    function addNewTrustee($trusteeName,$trusteEmail,$userId, $phone)
     {
-        $query = "INSERT INTO trustee(user_id,trustee_email,trustee_phone) 
-            VALUES('$userId' , '$trusteEmail', '$phone')";
+        $query = "INSERT INTO trustee(trustee_name,user_id,trustee_email,trustee_phone) 
+            VALUES('$trusteeName','$userId' , '$trusteEmail', '$phone')";
         $result = $this->connect()->query($query);
         if ($result) {
             return true;
