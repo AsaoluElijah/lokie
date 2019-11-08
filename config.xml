@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.lokie.app" versionCode="10" version="1.0.3">
+	<!-- versionCode is optional and Android only -->
+	<name>
+		Lokie
+	</name>
+	<description>
+		A security alert and a mobile location sharing app.
+	</description>
+	<author href="https://asaoluelijah.github.io" email="asaoluelijah7@gmail.com">
+		Asaolu Elijah
+	</author>
+	<plugin name="cordova-plugin-whitelist" source="npm" />
+	<icon src="icon.png" />
+	<splash src="res/screen/android/screen-ldpi-portrait.png" gap:platform="android" gap:qualifier="port-ldpi" />
+	<!-- Ask for location access -->
+	<platform name="android">
+		<uses-permission name="android.permission.ACCESS_COARSE_LOCATION" />
+		<uses-permission name="android.permission.ACCESS_FINE_LOCATION" />
+		<uses-permission name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+	</platform>
+	<allow-intent href="http://*/*" />
+	<allow-intent href="https://*/*" />
+	<allow-intent href="tel:*" />
+	<allow-intent href="sms:*" />
+	<allow-intent href="mailto:*" />
+	<allow-intent href="geo:*" />
+	<platform name="android">
+		<allow-intent href="market:*" />
+	</platform>
+</widget>
