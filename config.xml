@@ -12,7 +12,7 @@
 	</author>
 	<plugin name="cordova-plugin-whitelist" source="npm" />
 	<icon src="icon.png" />
-	<splash src="res/screen/android/screen-ldpi-portrait.png" gap:platform="android" gap:qualifier="port-ldpi" />
+	<!-- <splash src="res/screen/android/screen-ldpi-portrait.png" gap:platform="android" gap:qualifier="port-ldpi" /> -->
 	<!-- Ask for location access -->
 	<platform name="android">
 		<uses-permission name="android.permission.ACCESS_COARSE_LOCATION" />
