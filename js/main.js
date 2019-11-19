@@ -1,12 +1,10 @@
-if (localStorage.userdata == undefined) {
-    // console.log('Please login')
-    app.router.navigate({ url: '/login/' })
-} else {
+if (localStorage.userdata != 'undefined') {
     userData = JSON.parse(localStorage.userdata);
     localStorage.userId = Number(userData.id);
     localStorage.userEmail = userData.email;
     localStorage.userName = userData.name;
     // console.table(userData)
+
 }
 // Function to update trustee page with info from DB.
 // setInterval is used because the div for trustee doesnt exist at first.
@@ -84,7 +82,7 @@ function inviteUser() {
     } else if (validateEmail(email) == false) {
         app.dialog.alert('Invalid Email Address', 'Error');
     } else {
-        validateEmail(email);
+        // validateEmail(email);
 
         localStorage.inviteEmail = email;
         app.dialog.preloader('Loading, please wait');
@@ -98,12 +96,19 @@ function inviteUser() {
                     app.dialog.close();
                     app.dialog.alert('Unable To Send Request', 'Error');
                 } else {
+                    localStorage.inviteHash = data;
                     app.dialog.close();
                     location.href = './full_map.html';
                 }
             }
         );
     }
+}
+
+// Logout
+function logout() {
+    localStorage.userdata = 'undefined'
+    location.href = 'login.html';
 }
 
 // SIGNUP
@@ -129,6 +134,7 @@ function signUp() {
                 } else if (data == "failed") {
                     app.dialog.alert('Unknown error occured', 'Error');
                 } else {
+                    localStorage.userdata = data;
                     app.dialog.alert('Account created successfully', 'Success', function() {
                         // Change to route 👇
                         location.href = "index.html"
@@ -142,16 +148,20 @@ function signUp() {
 
 function addTrustee() {
     var formData = app.form.convertToData('#addTrusteForm');
+    var name = formData.name;
     var email = formData.email;
-    if (email == "") {
-        app.dialog.alert('Please enter a value', 'Error');
+    var phone = formData.phone;
+    if (name == "" || email == "" || phone == "") {
+        app.dialog.alert('All fields are required', 'Error');
     } else if (validateEmail(email) == false) {
         app.dialog.alert('Invalid Email Address', 'Error');
     } else {
         app.dialog.preloader('Loading, please wait');
         setTimeout(function() {
             app.request.get('./php/add_trustee.php', {
+                trusteeName: name,
                 trustee_email: email,
+                phone: phone,
                 user_id: localStorage.userId
                     // Change userId value from 1 to normal 👌
             }, function(data) {

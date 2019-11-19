@@ -16,6 +16,16 @@
     <link rel="stylesheet" href="css/app.css">
     <link rel="apple-touch-icon" href="img/f7-icon-square.png">
     <link rel="icon" href="img/f7-icon.png">
+    <style>
+        #map {
+            width: auto;
+            height: 400px;
+            display: none;
+            background: #e5e9e8;
+            background-image: url('img/new/loading.gif');
+            background-position: center;
+        }
+    </style>
 </head>
 
 <body class="color-theme-purple">
@@ -59,7 +69,7 @@
                             <div class="subtitle-page">Once <span id="inviteEmail"></span> accepts your invitation, your locations will be shared real time below</div>
                         </div>
 
-                        <div id="map" class="meet-map" style="width: auto;height: 400px;"></div>
+                        <div id="map" class="meet-map"></div>
 
                     </div>
                 </div>
@@ -67,29 +77,46 @@
             </div>
         </div>
     </div>
-    <div class="fab fab-right-bottom">
-        <a href="#">
-            <!-- First icon is visible when Speed Dial actions are closed -->
-            <i class="icon f7-icons">add</i>
-            <!-- Second icon is visible when Speed Dial actions are opened -->
-            <i class="icon f7-icons">close</i>
-        </a>
-        <!-- Speed Dial action buttons -->
-        <div class="fab-buttons fab-buttons-bottom">
-            <a href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-        </div>
-    </div>
     <script src="js/framework7.min.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/framework7/4.5.2/js/framework7.min.js" integrity="sha256-TGQ32roI0qkzBrtmvEcwDZq7EPFMmkYabGd/1T+F+YA=" crossorigin="anonymous"></script> -->
     <script src="js/routes.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/main.js"></script>
     <script>
-        var inviteEmail = localStorage.inviteEmail
+        var inviteEmail = localStorage.inviteEmail;
+        var inviteHash = localStorage.inviteHash;
         document.querySelector('#inviteEmail').innerHTML = inviteEmail;
-    </script>
-    <script>
+        // Function to check if user has accepted invitation
+        var inviteTimer = setInterval(function() {
+                app.request.get('./php/checkInvite.php', {
+                        checkInvite: true,
+                        user1: localStorage.userEmail,
+                        user2: localStorage.inviteEmail,
+                        key: localStorage.inviteHash
+                    },
+                    function(data) {
+                        console.log(data)
+                        if (data != "false") {
+                            // console.log(data)
+                            var user2Details = JSON.parse(data);
+                            // console.table(user2Details)
+                            // localStorage.user2
+                            app.dialog.alert('Invitation Accepted', 'Success');
+                            clearInterval(inviteTimer);
+                            // Show loading preloader
+                            app.dialog.preloader('Loading, please wait');
+                            setTimeout(function() {
+                                document.getElementById('map').style.display = 'block';
+                                app.dialog.close();
+                            }, 3000)
+                        }
+                    });
+            },
+            1000)
+
+        // USE PHP IF(ISSET(USER2LONG AND LAT TO INIT MAP)) 📌
+
+        // Show Map
         function initMap() {
             var directionsRenderer = new google.maps.DirectionsRenderer;
             var directionsService = new google.maps.DirectionsService;

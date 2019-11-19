@@ -7,39 +7,31 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="theme-color" content="#f44336">
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:"> -->
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src *  'unsafe-inline'; script-src *  'unsafe-inline'; media-src *">
     <title>Lokie</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700" rel="stylesheet">
     <link rel="stylesheet" href="css/framework7.ios.css">
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/framework7@3.5.0/css/framework7.ios.css"> -->
     <link rel="stylesheet" href="css/icons.css">
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/eagle.css">
     <link rel="apple-touch-icon" href="img/f7-icon-square.png">
     <link rel="icon" href="img/f7-icon.png">
-    <style>
-        @keyframes bubble {
-            10% {
-                background: rgba(17, 91, 252, 0.151);
-            }
-            20% {
-                background: #0026ff3a;
-            }
-            30% {
-                background: #3700ff36;
-            }
+    <script>
+        // Redirect to walkthrough (onboarding page) if it has not been viewed, else redirect to login page
+        if (localStorage.viewedWalkThrough != "true") {
+            location.href = 'walk.html';
         }
-        
-        .send-alert-icon {
-            padding: 17px;
-            color: #007aff;
-            font-size: 50px;
-            background: rgba(0, 47, 255, 0.13);
-            border-radius: 50px;
-            animation-name: bubble;
-            animation-duration: 3s;
-            animation-iteration-count: infinite;
-        }
-    </style>
+        setTimeout(function() {
+                if (localStorage.userdata == 'undefined') {
+                    location.href = 'login.html';
+                }
+            }, 1000)
+            // else if (localStorage.userdata == 'undefined') {
+            //     location.href = 'login.html';
+            // }
+    </script>
 </head>
 
 <body class="color-theme-purple">
@@ -62,28 +54,41 @@
                 <div class="page-content">
                     <div class="list">
                         <ul>
+                            <!-- .....
+                                Dark Mode - Maybe a future update
+                             -->
+                            <!-- <li style="margin-top: 20px;">
+                                <div class="item-inner" style="margin-left: 10px;">
+                                    <div class="item-title">Night Mode</div>
+                                    <label class="toggle toggle-init color-blue">
+                                        <input type="checkbox" onchange="darkMode()">
+                                        <span class="toggle-icon"></span>
+                                    </label>
+                                </div>
+                            </li> -->
+                            <!-- ..... -->
                             <li style="margin-top: 20px;">
-                                <a href="#" class="item-link item-content">
+                                <a href="explore.html" class="link external item-link item-content">
                                     <div class="item-inner">
                                         <div class="item-title">Explore</div>
                                     </div>
                                 </a>
                             </li>
                             <li style="margin-top: 20px;">
-                                <a href="#" class="item-link item-content">
+                                <a href="/invite/" class="item-link item-content">
                                     <div class="item-inner">
                                         <div class="item-title">Meet Someone</div>
                                     </div>
                                 </a>
                             </li>
                             <li style="margin-top: 20px;">
-                                <a href="#" class="item-link item-content">
+                                <a href="trustee.html" class="link external item-link item-content">
                                     <div class="item-inner">
                                         <div class="item-title">My Trustee</div>
                                     </div>
                                 </a>
                             </li>
-                            <li style="margin-top: 20px;">
+                            <li style="margin-top: 20px;" onclick="logout()">
                                 <a href="#" class="item-link item-content">
                                     <div class="item-media color-blue"><i class="material-icons">power_settings_new</i></div>
                                     <div class="item-inner">
@@ -113,7 +118,7 @@
                 <div class="toolbar tabbar tabbar-labels">
                     <div class="toolbar-inner"><a href="/" class="tab-link tab-link-active"><i
                                 class="material-icons">home</i> <span class="tabbar-label">Home</span></a> <a href="/invite/" class="tab-link"><i class="material-icons">send</i> <span
-                                class="tabbar-label">Invite</span></a> <a href="/trustees/" class="tab-link"><i
+                                class="tabbar-label">Invite</span></a> <a href="trustee.html" class="tab-link link external"><i
                                 class="material-icons">supervisor_account</i> <span
                                 class="tabbar-label">Trustees</span></a>
                         <a href="" class="tab-link panel-open" data-panel="right"><i
@@ -125,20 +130,23 @@
                         <div class="title-page">
                             <div class="title-page-with-link">
                                 <h1 id="my_app_name">Lokie</h1>
-                                <a href="/profile/"><img src="./img/user.png" alt="user" class="user-img"></a>
+                                <a href="/profile/"><img src="./img/new/avatar.png" alt="user" class="user-img"></a>
                             </div>
                         </div>
 
                         <!-- Search -->
-                        <div class="searchbar-page">
-                            <form class="searchbar">
-                                <div class="searchbar-input-wrap">
-                                    <input placeholder="Search for a place" id="search-place" type="text">
-                                    <i class="searchbar-icon"></i>
-                                    <span class="input-clear-button"></span>
-                                </div>
-                            </form>
-                        </div>
+
+                        <a class="external" href="walk.html">
+                            <div class="searchbar-page">
+                                <form class="searchbar">
+                                    <div class="searchbar-input-wrap">
+                                        <input placeholder="Search for a place" id="pac-input" type="text">
+                                        <i class="searchbar-icon"></i>
+                                        <span class="input-clear-button"></span>
+                                    </div>
+                                </form>
+                            </div>
+                        </a>
                         <!-- End Search -->
                         <!-- Action Button -->
                         <div class="send-alert">
@@ -149,13 +157,21 @@
                         <div class="section">
                             <div class="title-section-with-link">
                                 <h3>My Location</h3>
+                                <!-- Toggle satellite view -->
+
+                                <li style="margin-right: 20px;list-style-type:none;">
+                                    <span>Satellite</span>
+                                    <label class="toggle toggle-init color-blue">
+                                        <input type="checkbox" onchange="">
+                                        <span class="toggle-icon"></span>
+                                    </label>
+                                </li>
+                                <!-- Toggle satellite view end -->
                             </div>
-                            <!-- <a href="/full_map/"> -->
                             <div class="section-content">
-                                <div id="googlmap" style="width: auto;height: 320px;"></div>
+                                <div id="googlemap" style=""></div>
 
                             </div>
-                            <!-- </a> -->
                         </div>
 
                         <!-- Quick Action Section -->
@@ -168,10 +184,6 @@
                             <div class="section-content">
                                 <div data-pagination="{&quot;el&quot;: &quot;.swiper-pagination&quot;}" data-space-between="15" data-slides-per-view="3" class="swiper-container swiper-init swiper-container-horizontal swiper-container-ios">
                                     <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
-                                        <div class="swiper-slide swiper-slide-active" style="width: 118px; margin-right: 15px;">
-                                            <a class="link external" href="explore.html"><img src="./img/cat1.png" alt="cat1"></a>
-                                            <div class="item-title"><a href="#">Places Near Me</a></div>
-                                        </div>
                                         <div class="swiper-slide swiper-slide-next" style="width: 118px; margin-right: 15px;">
                                             <a href="/invite/"><img src="./img/cat2.png" alt="cat2"></a>
                                             <div class="item-title"><a href="#">Meet Someone</a></div>
@@ -179,6 +191,10 @@
                                         <div class="swiper-slide" style="width: 118px; margin-right: 15px;">
                                             <a class="link external" href="trustee.html"><img src="./img/cat3.png" alt="cat3"></a>
                                             <div class="item-title"><a href="#">My Trustees</a></div>
+                                        </div>
+                                        <div class="swiper-slide swiper-slide-active" style="width: 118px; margin-right: 15px;">
+                                            <a class="link external" href="explore.html"><img src="./img/cat1.png" alt="cat1"></a>
+                                            <div class="item-title"><a href="#">Places Near Me</a></div>
                                         </div>
                                     </div>
                                     <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
@@ -245,20 +261,6 @@
             </div>
         </div>
     </div>
-    <div class="fab fab-right-bottom">
-        <a href="#">
-            <!-- First icon is visible when Speed Dial actions are closed -->
-            <i class="icon f7-icons">add</i>
-            <!-- Second icon is visible when Speed Dial actions are opened -->
-            <i class="icon f7-icons">close</i>
-        </a>
-        <!-- Speed Dial action buttons -->
-        <div class="fab-buttons fab-buttons-bottom">
-            <a href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-        </div>
-    </div>
     <script src="js/framework7.min.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/framework7/4.5.2/js/framework7.min.js" integrity="sha256-TGQ32roI0qkzBrtmvEcwDZq7EPFMmkYabGd/1T+F+YA=" crossorigin="anonymous"></script> -->
     <script src="js/routes.js"></script>
@@ -266,15 +268,29 @@
     <script src="js/main.js"></script>
     <!-- JS CODE SHOULD BE AFTER REQUIRED JS FILES -->
     <script>
+        // function darkMode() {
+        //     document.getElementById('app').classList.add('theme-dark')
+        // }
+
         function sendAlert() {
             app.request.get('php/PHPMailer/send_alert.php', {
-                    sendMail: true,
-                    userId: 1,
+                    sendAlert: true,
+                    userEmail: localStorage.userEmail,
+                    userId: Number(localStorage.userId)
                 },
                 function(data) {
-                    document.querySelector('.send-alert-icon').style.color = "#F44336";
-                    app.dialog.alert('Notification Sent ✔', 'Success');
-                    console.log(data + '🔥');
+                    var regex = /(false)/
+                    var check = regex.test(data);
+                    if (check == true) {
+                        console.log('Unable to send notification');
+                        app.dialog.alert('Unable to send notification', 'Error');
+                    } else if (data == 'You have no trustee') {
+                        app.dialog.alert('You currently do not have any trustee', 'Error');
+                    } else {
+                        document.querySelector('.send-alert-icon').style.color = "#F44336";
+                        app.dialog.alert('Notification Sent', 'Success');
+                        console.log(data);
+                    }
                 }
             )
 
@@ -287,77 +303,17 @@
         var map, infoWindow;
 
         function initMap() {
-            map = new google.maps.Map(document.getElementById('googlmap'), {
+            map = new google.maps.Map(document.getElementById('googlemap'), {
                 center: {
                     lat: -34.397,
                     lng: 150.644
                 },
-                zoom: 17,
+                zoom: 8,
                 // Or roadmap
                 // mapTypeId: 'satellite'
             });
             infoWindow = new google.maps.InfoWindow;
 
-            // *******************
-            var input = document.getElementById('search-place');
-            var searchBox = new google.maps.places.SearchBox(input);
-            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-            // Bias the SearchBox results towards current map's viewport.
-            map.addListener('bounds_changed', function() {
-                searchBox.setBounds(map.getBounds());
-            });
-
-            var markers = [];
-            // Listen for the event fired when the user selects a prediction and retrieve
-            // more details for that place.
-            searchBox.addListener('places_changed', function() {
-                var places = searchBox.getPlaces();
-
-                if (places.length == 0) {
-                    return;
-                }
-
-                // Clear out the old markers.
-                markers.forEach(function(marker) {
-                    marker.setMap(null);
-                });
-                markers = [];
-
-                // For each place, get the icon, name and location.
-                var bounds = new google.maps.LatLngBounds();
-                places.forEach(function(place) {
-                    if (!place.geometry) {
-                        console.log("Returned place contains no geometry");
-                        return;
-                    }
-                    var icon = {
-                        url: place.icon,
-                        size: new google.maps.Size(71, 71),
-                        origin: new google.maps.Point(0, 0),
-                        anchor: new google.maps.Point(17, 34),
-                        scaledSize: new google.maps.Size(25, 25)
-                    };
-
-                    // Create a marker for each place.
-                    markers.push(new google.maps.Marker({
-                        map: map,
-                        icon: icon,
-                        title: place.name,
-                        position: place.geometry.location
-                    }));
-
-                    if (place.geometry.viewport) {
-                        // Only geocodes have viewport.
-                        bounds.union(place.geometry.viewport);
-                    } else {
-                        bounds.extend(place.geometry.location);
-                    }
-                });
-                map.fitBounds(bounds);
-            });
-
-            // *********************
             // Try HTML5 geolocation.
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
@@ -379,19 +335,6 @@
                     // Map marker end
                     var lat = position.coords.latitude;
                     var long = position.coords.longitude;
-                    setInterval(function() {
-                            app.request.get('php/update_location.php', {
-                                    long: long,
-                                    lat: lat,
-                                    userId: 1,
-                                    update: true
-                                },
-                                function(data) {
-                                    console.log(data + '🔥');
-                                }
-                            )
-                        },
-                        1000)
                 }, function() {
                     handleLocationError(true, infoWindow, map.getCenter());
                 });
@@ -408,16 +351,9 @@
                 'Error: Your browser doesn\'t support geolocation.');
             infoWindow.open(map);
         }
-        // API KEY = AIzaSyDmwbZFOM6zFZpFMOng9mZMc-UzQtXvsaU
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmwbZFOM6zFZpFMOng9mZMc-UzQtXvsaU&libraries=places&callback=initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmwbZFOM6zFZpFMOng9mZMc-UzQtXvsaU&callback=initMap">
     </script>
 </body>
-
-</html>
-
-</html>
-
-</html>
 
 </html>

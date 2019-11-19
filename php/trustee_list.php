@@ -7,14 +7,7 @@ $result = $connection->connect()->query($query);
 ?>
 <?php while ($row = mysqli_fetch_array($result)) {
       $trusteeEmail = $row['trustee_email'];
-      $query2 ="SELECT * FROM user WHERE email = '$trusteeEmail' ";
-      $result2 = $connection->connect()->query($query2);
-      $row2 = mysqli_fetch_array($result2);
-      if ($row2 > 0) {
-         $trusteeName = $row2['name'];
-      }else {
-         $trusteeName = $row['trustee_email'];
-      }
+      $trusteeName = $row['trustee_name'];
       $dateAdded = $row['date_added'];
    ?>
 

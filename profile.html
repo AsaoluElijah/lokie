@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#f44336">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+    <title>Lokie</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/framework7.ios.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/framework7@3.5.0/css/framework7.ios.css"> -->
+    <link rel="stylesheet" href="css/icons.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="apple-touch-icon" href="img/f7-icon-square.png">
+    <link rel="icon" href="img/f7-icon.png">
+    <style>
+        .item-input .item-inner {
+            display: block;
+            margin: 10px 10px 10px;
+        }
+    </style>
+</head>
+
+<body class="color-theme-purple" onload="showLoader()">
+    <div id="app">
+        <div class="statusbar"></div>
+        <div class="panel panel-left panel-cover">
+            <div class="page">
+                <div class="page-content">
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-right panel-cover panel-filter">
+            <div class="navbar">
+                <div class="navbar-inner sliding">
+                    <div class="title">MENU</div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="page-content">
+                    <div class="list">
+                        <ul>
+                            <li style="margin-top: 20px;">
+                                <a href="explore.html" class="link external item-link item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">Explore</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li style="margin-top: 20px;">
+                                <a href="/invite/" class="item-link item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">Meet Someone</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li style="margin-top: 20px;">
+                                <a href="trustee.html" class="link external item-link item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">My Trustee</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li style="margin-top: 20px;" onclick="logout()">
+                                <a href="#" class="item-link item-content">
+                                    <div class="item-media color-blue"><i class="material-icons">power_settings_new</i></div>
+                                    <div class="item-inner">
+                                        <div class="item-title">Logout</div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="view view-main view-init ios-edges" data-url="/">
+            <div class="page no-navbar">
+
+                <div class="toolbar tabbar tabbar-labels">
+                    <div class="toolbar-inner"><a href="index.html" class="link external tab-link tab-link-active"><i
+                                        class="material-icons">home</i> <span class="tabbar-label">Home</span></a> <a href="/invite/" class="tab-link"><i class="material-icons">send</i> <span
+                                        class="tabbar-label">Invite</span></a> <a href="trustee.html" class="tab-link link external"><i
+                                        class="material-icons">supervisor_account</i> <span
+                                        class="tabbar-label">Trustees</span></a>
+                        <a href="" class="tab-link panel-open" data-panel="right"><i
+                                        class="material-icons">menu</i> <span class="tabbar-label">Menu</span></a></div>
+                </div>
+
+                <div class="toolbar tabbar toolbar-top">
+                    <div class="toolbar-inner">
+                        <a href="#profile" class="tab-link tab-link-active">Profile</a>
+                        <a href="#information" class="tab-link">Informations</a>
+                        <!-- <a href="#ads" class="tab-link">My Ads</a> -->
+                    </div>
+                </div>
+
+                <div class="tabs tabs-with-top-toolbar">
+                    <div id="profile" class="page-content tab tab-active">
+                        <div class="block">
+                            <div class="section section-with-toolbar-top no-border">
+                                <div class="list media-list no-hairlines no-hairlines-between profile-information">
+                                    <ul>
+                                        <li>
+                                            <div class="item-content">
+                                                <div class="item-media"><img src="./img/profile.png" width="80" alt="profile"></div>
+                                                <div class="item-inner">
+                                                    <div class="item-title-row">
+                                                        <div class="item-title">Asaolu Elijah</div>
+                                                    </div>
+                                                    <div class="item-subtitle">Since 2019-12-2012</div>
+                                                    <!-- <div class="item-text"><a href="#">Change Avatar</a></div> -->
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="list no-hairlines">
+                                    <p>Alert Click Time ➡ 12 </p>
+                                    <p>Trustee Count ➡ 03</p>
+                                    <p>Added you ➡ 10</p>
+                                    <p>Star ➡ ⭐⭐⭐</p>
+
+                                </div>
+                                <p>Invite Friends To Use Lokie And Earn More Stars</p>
+                                <button class="col button button-fill color-blue lg"><i class="material-icons">share</i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="information" class="page-content tab">
+                        <div class="block">
+                            <div class="section section-with-toolbar-top no-border">
+                                <div class="list no-hairlines">
+                                    <ul>
+                                        <li class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-input-wrap">
+                                                    <input placeholder="First name" class="" type="text">
+                                                    <span class="input-clear-button"></span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-input-wrap">
+                                                    <input placeholder="Last name" class="" type="text">
+                                                    <span class="input-clear-button"></span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-input-wrap">
+                                                    <input placeholder="mr.bright@gmail.com" class="" type="email">
+                                                    <span class="input-clear-button"></span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-input-wrap">
+                                                    <input placeholder="+00 22 00 11 32 45" class="" type="text">
+                                                    <span class="input-clear-button"></span>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <li class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-input-wrap">
+                                                    <input placeholder="Current password" class="" type="password">
+                                                    <span class="input-clear-button"></span>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <li class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-input-wrap">
+                                                    <input placeholder="New password" class="" type="password">
+                                                    <span class="input-clear-button"></span>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <li class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-input-wrap">
+                                                    <input placeholder="Confirm password" class="" type="password">
+                                                    <span class="input-clear-button"></span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <button class="col button button-fill color-black">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="js/framework7.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/framework7/4.5.2/js/framework7.min.js" integrity="sha256-TGQ32roI0qkzBrtmvEcwDZq7EPFMmkYabGd/1T+F+YA=" crossorigin="anonymous"></script> -->
+    <script src="js/routes.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
