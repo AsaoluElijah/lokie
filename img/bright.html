@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="default">
+		<meta name="theme-color" content="#f44336">
+		<meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+		<title>Bright</title>
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700" rel="stylesheet">
+		<link rel="stylesheet" href="css/framework7.ios.css">
+		<link rel="stylesheet" href="css/icons.css">
+		<link rel="stylesheet" href="css/app.css">
+		<link rel="apple-touch-icon" href="img/f7-icon-square.png">
+		<link rel="icon" href="img/f7-icon.png">
+	</head>
+	<body class="color-theme-pink">
+		<div id="app">
+			<div class="statusbar"></div>
+			<div class="panel panel-left panel-cover">
+				<div class="page">
+					<div class="page-content">
+					</div>
+				</div>
+			</div>
+			
+			<div class="panel panel-right panel-cover panel-filter">
+				<div class="navbar"><div class="navbar-inner sliding">
+					<div class="title">Filter</div></div>
+				</div>
+				<div class="page">
+					<div class="page-content">
+						<div class="block">
+							<div class="list no-hairlines">
+								<ul>
+									<li class="item-content item-input">
+										<div class="item-inner">
+											<div class="item-input-wrap">
+												<input placeholder="Enter a keyword" class="" type="text">
+												<span class="input-clear-button"></span>
+											</div>
+										</div>
+									</li>
+									<li class="item-content item-input">
+										<div class="item-inner">
+											<div class="item-input-wrap input-dropdown-wrap">
+												<select class="input-with-value">
+													<option value="cat1">Electronics</option>
+													<option value="cat2">Women's Clothes</option>
+												</select>
+											</div>
+										</div>
+									</li>
+									<li class="item-content item-input">
+										<div class="item-inner">
+											<div class="item-input-wrap input-dropdown-wrap">
+												<select class="input-with-value">
+													<option value="loc1">Location 1</option>
+													<option value="loc2">Location 2</option>
+												</select>
+											</div>
+										</div>
+									</li>
+									<li class="item-content item-input">
+										<div class="item-inner">
+											<div class="item-input-wrap">
+											
+												<div class="item-price-detail">
+													<p>Item price</p>
+													<p>
+														<span class="price-min">100$</span>
+														 - 
+														<span class="price-max">500$</span>
+													</p>
+												</div>
+												
+												<div class="range-price range-slider range-slider-init" data-dual="true" data-min="0" data-max="500" data-step="10" data-value-left="100" data-value-right="500"></div>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<button class="col button button-fill color-black">Apply Filter</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="view view-main view-init ios-edges" data-url="/">
+				<div class="page no-navbar">
+				
+					<div class="toolbar tabbar tabbar-labels">
+						<div class="toolbar-inner">
+							<a href="/" class="tab-link tab-link-active">
+								<i class="material-icons">home</i>
+								<span class="tabbar-label">Home</span>
+							</a>
+							<a href="/shop/" class="tab-link">
+								<i class="material-icons">shop</i>
+								<span class="tabbar-label">Shop</span>
+							</a>
+							<a href="/add_ad/" class="tab-link">
+								<i class="material-icons">add_box</i>
+								<span class="tabbar-label">Add Ads</span>
+							</a>
+							<a href="/profile/" class="tab-link">
+								<i class="material-icons">person</i>
+								<span class="tabbar-label">Profile</span>
+							</a>
+							<a href="/pages/" class="tab-link">
+								<i class="material-icons">pages</i>
+								<span class="tabbar-label">Pages</span>
+							</a>
+						</div>
+					</div>
+	
+					<div class="page-content">
+						<div class="block block-no-padding">
+							<div class="title-page">
+								<div class="title-page-with-link">
+									<h1>Browse</h1>
+									<a href="/profile/"><img src="./img/user.png" alt="user" class="user-img"></a>
+								</div>
+							</div>
+							<!-- Search -->
+							<div class="searchbar-page">
+							<form class="searchbar">
+								<div class="searchbar-input-wrap">
+									<input placeholder="Search for Ads" class="" type="search">
+									<i class="searchbar-icon"></i>
+									<span class="input-clear-button"></span>
+								</div>
+							</form>
+							</div>
+							<!-- End Search -->
+							
+							<!-- Categories Section -->
+							<div class="section">
+								<div class="title-section">
+									<div class="title-section-with-link">
+										<h3>Browse categories</h3>
+										<a href="/categories/">See all <i class="f7-icons">chevron_right</i></a>
+									</div>
+								</div>
+								<div class="section-content">
+									<div data-pagination="{&quot;el&quot;: &quot;.swiper-pagination&quot;}" data-space-between="15" data-slides-per-view="3" class="swiper-container swiper-init swiper-container-horizontal">
+										<div class="swiper-wrapper">
+											<div class="swiper-slide">
+												<a href="#"><img src="./img/cat1.png" alt="cat1"></a>
+												<div class="item-title"><a href="#">Vehicles</a></div>
+												<div class="item-infos"><a href="#">205 Ads</a></div>
+											</div>
+											<div class="swiper-slide">
+												<a href="#"><img src="./img/cat2.png" alt="cat2"></a>
+												<div class="item-title"><a href="#">Electronics</a></div>
+												<div class="item-infos"><a href="#">13k Ads</a></div>
+											</div>
+											<div class="swiper-slide">
+												<a href="#"><img src="./img/cat3.png" alt="cat3"></a>
+												<div class="item-title"><a href="#">Sports</a></div>
+												<div class="item-infos"><a href="#">514 Ads</a></div>
+											</div>
+											<div class="swiper-slide">
+												<a href="#"><img src="./img/cat4.png" alt="cat3"></a>
+												<div class="item-title"><a href="#">Beauty</a></div>
+												<div class="item-infos"><a href="#">1.2k Ads</a></div>
+											</div>
+											<div class="swiper-slide">
+												<a href="#"><img src="./img/cat5.png" alt="cat5"></a>
+												<div class="item-title"><a href="#">Home</a></div>
+												<div class="item-infos"><a href="#">1k Ads</a></div>
+											</div>
+											<div class="swiper-slide">
+												<a href="#"><img src="./img/cat6.png" alt="cat6"></a>
+												<div class="item-title"><a href="#">Jewelry</a></div>
+												<div class="item-infos"><a href="#">1k Ads</a></div>
+											</div>
+											<div class="swiper-slide">
+												<a href="#"><img src="./img/cat7.png" alt="cat7"></a>
+												<div class="item-title"><a href="#">Clothes</a></div>
+												<div class="item-infos"><a href="#">1k Ads</a></div>
+											</div>
+											<div class="swiper-slide">
+												<a href="#"><img src="./img/cat8.png" alt="cat8"></a>
+												<div class="item-title"><a href="#">Kids</a></div>
+												<div class="item-infos"><a href="#">1k Ads</a></div>
+											</div>
+											<div class="swiper-slide">
+												<a href="#"><img src="./img/cat9.png" alt="cat9"></a>
+												<div class="item-title"><a href="#">Toys</a></div>
+												<div class="item-infos"><a href="#">1k Ads</a></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<!-- Top ADS Section -->
+							<div class="section">
+								<div class="title-section">
+									<div class="title-section-with-link">
+										<h3>Top Ads in Sports</h3>
+										<a href="/shop/">See all <i class="f7-icons">chevron_right</i></a>
+									</div>
+								</div>
+								<div class="section-content">
+									<div data-pagination="{&quot;el&quot;: &quot;.swiper-pagination&quot;}" data-space-between="15" data-slides-per-view="2" class="swiper-container swiper-init swiper-container-horizontal">
+										<div class="swiper-wrapper">
+											<div class="swiper-slide">
+												<a href="#"><img src="./img/top1.png" alt="top1"></a>
+												<div class="item-title"><a href="/ad_detail/">Brand Crop Tank Top & Leggings Set </a></div>
+												<div class="item-infos">US $200</div>
+											</div>
+											<div class="swiper-slide">
+												<a href="#"><img src="./img/top2.png" alt="top2"></a>
+												<div class="item-title"><a href="/ad_detail/">Girls Cut and Sew Letter Print Pants</a></div>
+												<div class="item-infos">US $80</div>
+											</div>
+											<div class="swiper-slide">
+												<a href="#"><img src="./img/top3.png" alt="top2"></a>
+												<div class="item-title"><a href="/ad_detail/">Rainbow Striped Tee & Sweatpants Co-Ord</a></div>
+												<div class="item-infos">US $80</div>
+											</div>
+											<div class="swiper-slide">
+												<a href="#"><img src="./img/top4.png" alt="top2"></a>
+												<div class="item-title"><a href="/ad_detail/">Snap-Stud Panel Side Crop Top & Sweatpants Set</a></div>
+												<div class="item-infos">US $80</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<!-- Top ADS Section -->
+							<div class="section">
+								<div class="title-section">
+									<div class="title-section-with-link">
+										<h3>Trending Ads</h3>
+										<a href="/shop/">See all <i class="f7-icons">chevron_right</i></a>
+									</div>
+								</div>
+								<div class="section-content">
+									<div class="row">
+										<div class="col">
+											<a href="/ad_detail/"><img src="./img/product1.png" alt="product1"></a>
+											<div class="item-category"><a href="#">Electronics  <i class="f7-icons">chevron_right</i></a></div>
+											<div class="item-title"><a href="/ad_detail/">Fujifilm instax mini 9 Instant Film Camera</a></div>
+											<div class="item-infos">US $102</div>
+										</div>
+										<div class="col">
+											<a href="/ad_detail/"><img src="./img/product2.png" alt="product2"></a>
+											<div class="item-category"><a href="#">Women's Clothes  <i class="f7-icons">chevron_right</i></a></div>
+											<div class="item-title"><a href="/ad_detail/">adidas women Blue Soft Trainers</a></div>
+											<div class="item-infos">US $80</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col">
+											<a href="/ad_detail/"><img src="./img/product3.png" alt="product3"></a>
+											<div class="item-category"><a href="#">Electronics  <i class="f7-icons">chevron_right</i></a></div>
+											<div class="item-title"><a href="/ad_detail/">Wireless headphones with Bluetooth</a></div>
+											<div class="item-infos">US $22</div>
+										</div>
+										<div class="col">
+											<a href="/ad_detail/"><img src="./img/product4.png" alt="product4"></a>
+											<div class="item-category"><a href="#">Electronics  <i class="f7-icons">chevron_right</i></a></div>
+											<div class="item-title"><a href="/ad_detail/">Canon Eos 550 Photo with 22 Pixels</a></div>
+											<div class="item-infos">US $650</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<!-- Seller Section -->
+							<div class="section sellers-section">
+								<div class="title-section">
+									<div class="title-section-with-link">
+										<h3>Best Sellers</h3>
+										<a href="/sellers/">See all <i class="f7-icons">chevron_right</i></a>
+									</div>
+								</div>
+								<div class="section-content">
+									<div data-pagination="{&quot;el&quot;: &quot;.swiper-pagination&quot;}" data-space-between="5" data-slides-per-view="2.5" class="swiper-container swiper-init swiper-container-horizontal">
+										<div class="swiper-wrapper">
+											<div class="swiper-slide">
+												<a href="#"><img src="./img/seller1.png" alt="seller1" class="seller-img"></a>
+												<div class="item-title"><a href="#">Katie Freewomen</a></div>
+												<div class="item-infos">4.8 Stars</div>
+											</div>
+											<div class="swiper-slide">
+												<a href="#"><img src="./img/seller2.png" alt="seller2" class="seller-img"></a>
+												<div class="item-title"><a href="#">John Freeman</a></div>
+												<div class="item-infos">4.2 Stars</div>
+											</div>
+											<div class="swiper-slide">
+												<a href="#"><img src="./img/seller3.png" alt="seller3" class="seller-img"></a>
+												<div class="item-title"><a href="#">Felecity Black</a></div>
+												<div class="item-infos">3.8 Stars</div>
+											</div>
+											<div class="swiper-slide">
+												<a href="#"><img src="./img/seller4.png" alt="seller3" class="seller-img"></a>
+												<div class="item-title"><a href="#">Iriss Doe</a></div>
+												<div class="item-infos">5 Stars</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<!-- brands Section -->
+							<div class="section no-border">
+								<div class="title-section">
+									<div class="title-section-with-link">
+										<h3>The best brands</h3>
+										<a href="/shop/">See all <i class="f7-icons">chevron_right</i></a>
+									</div>
+								</div>
+								<div class="section-content">
+									<div data-pagination="{&quot;el&quot;: &quot;.swiper-pagination&quot;}" data-space-between="15" data-slides-per-view="1.5" class="swiper-container swiper-init swiper-container-horizontal">
+										<div class="swiper-wrapper">
+											<div class="swiper-slide">
+												<a href="#">
+													<div class="brand-card">
+														<img src="./img/brand1.png" alt="brand1">
+														<div class="brand-infos">
+															<div class="item-title">The Elite</div>
+															<div class="item-infos">Best Home Decorating</div>
+														</div>
+													</div>
+												</a>
+											</div>
+											
+											<div class="swiper-slide">
+												<a href="#">
+													<div class="brand-card">
+														<img src="./img/brand1.png" alt="brand2">
+														<div class="brand-infos">
+															<div class="item-title">The Elite</div>
+															<div class="item-infos">Best Home Decorating</div>
+														</div>
+													</div>
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<script src="js/framework7.min.js"></script>
+		<script src="js/routes.js"></script>
+		<script src="js/app.js"></script>
+	</body>
+</html>

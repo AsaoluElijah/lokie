@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#f44336">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+    <title>Lokie</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/framework7.ios.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/framework7@3.5.0/css/framework7.ios.css"> -->
+    <link rel="stylesheet" href="css/icons.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="apple-touch-icon" href="img/f7-icon-square.png">
+    <link rel="icon" href="img/f7-icon.png">
+</head>
+
+<body class="color-theme-purple">
+    <div id="app">
+        <div class="statusbar"></div>
+        <div class="panel panel-left panel-cover">
+            <div class="page">
+                <div class="page-content">
+                </div>
+            </div>
+        </div>
+        <div class="page no-navbar login-form">
+            <div class="page-content" style="margin-top:20px;">
+
+                <div class="block">
+
+                    <div class="title-page">
+                        <div class="title-page-with-link" style="text-align:center;">
+                            <h1>Create New Lokie Account</h1>
+                        </div>
+                        <br>
+                        <img src="img/new/login.png" alt="Login Image" style="width: 200px;margin: auto;">
+                    </div>
+
+                    <div class="list no-hairlines">
+                        <form id="registerForm">
+                            <ul>
+                                <li class="item-content item-input">
+                                    <div class="item-inner" style="margin: 10px 10px 10px;">
+                                        <div class="item-input-wrap">
+                                            <input placeholder="Full Name" autocomplete="off" name="name" type="text" autocomplete="false">
+                                            <span class="input-clear-button"></span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item-content item-input">
+                                    <div class="item-inner" style="margin: 10px 10px 10px;">
+                                        <div class="item-input-wrap">
+                                            <input placeholder="Email Address" autocomplete="off" name="email" type="email" autocomplete="false">
+                                            <span class="input-clear-button"></span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item-content item-input">
+                                    <div class="item-inner" style="margin: 10px 10px 10px;">
+                                        <div class="item-input-wrap">
+                                            <input placeholder="Password" autocomplete="off" name="password" type="password" autocomplete="false">
+                                            <span class="input-clear-button"></span>
+                                            <hr style="border: 0.6px solid #e4e3e6;margin-top: 0px;">
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <!-- <input type="checkbox" class="checkbox check" name="t&c" id="accept"> &nbsp; -->
+                            <label class="radio">
+                                <input type="radio" name="accept-terms">
+                                <i class="icon-radio" style="display: inline-block;"></i>
+                                <small>&nbsp;&nbsp;I accept the <a href="#">Terms and Conditions</a></small>
+                            </label>
+                            <!-- <label for="accept">
+                                <small>I accept the <a href="#">Terms and Conditions</a></small>
+                            </label> -->
+                        </form>
+                    </div>
+
+                    <button onclick="signUp();" class="col button button-fill color-blue open-invite-alert" style="height: auto;padding:6px;font-size: 16px;border-radius: 12px;">
+                        Sign Up
+                    </button>
+                    <br>
+                    <span class="form-login-footer">
+                        Already have an account? <a class="link external" href="login.html">Login</a>
+                    </span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/framework7.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/framework7/4.5.2/js/framework7.min.js" integrity="sha256-TGQ32roI0qkzBrtmvEcwDZq7EPFMmkYabGd/1T+F+YA=" crossorigin="anonymous"></script> -->
+    <script src="js/routes.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

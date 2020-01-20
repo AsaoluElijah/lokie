@@ -1,0 +1,548 @@
+/*==============================================
+[Main stylesheet app.css]
+
+Author:			WM_Team
+Version:		1.0
+Created:		01 september 2018
+Last updated:	08 september 2018
+Template:		Bright - Mobile Template For Classified Ads
+================================================*/
+
+
+/*
+[Table of Contents]
+
+01. GENERAL
+02. HOMEPAGE
+03. PANEL FILTER
+04. TOOLBAR
+05. PROFILE
+06. AD DETAIL
+07. PAGES
+08. WALKTHROUGH
+09. LOGIN & REGISTRE
+*/
+
+
+/*===============================================*/
+
+
+/* 01. GENERAL	 						    	 */
+
+
+/*===============================================*/
+
+@font-face {
+    font-family: "Montserrat-Light";
+    src: url('../fonts/Montserrat-Light.otf');
+}
+
+@font-face {
+    font-family: "Montserrat-Regular";
+    src: url('../fonts/Montserrat-Regular.ttf');
+}
+
+@font-face {
+    font-family: "Montserrat-SemiBold";
+    src: url('../fonts/Montserrat-SemiBold.otf');
+}
+
+
+/*  */
+
+body {
+    background: #fff;
+}
+
+.ios body {
+    font-family: 'Montserrat-Regular', sans-serif;
+    /* font-family: 'Montserrat', sans-serif; */
+    color: #000;
+    background: #fff;
+    line-height: 1.4;
+}
+
+.ios .page {
+    background: #fff;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+.ios .block {
+    color: #000;
+}
+
+.block.block-no-padding {
+    padding-right: 0px;
+}
+
+.ios .list input[type="date"],
+.ios .list input[type="datetime-local"],
+.ios .list input[type="email"],
+.ios .list input[type="number"],
+.ios .list input[type="password"],
+.ios .list input[type="search"],
+.ios .list input[type="tel"],
+.ios .list input[type="text"],
+.ios .list input[type="time"],
+.ios .list input[type="url"],
+.ios .list select,
+.ios .list textarea {
+    font-size: 16px;
+}
+
+.checkbox-label {
+    font-size: 12px;
+    padding-left: 5px;
+    color: #757575;
+}
+
+.hairlines {
+    border-bottom: 1px solid #DDDDDD;
+    padding-bottom: 15px;
+    color: #757575;
+}
+
+.ios .data-table td.no-hairlines::before {
+    display: none;
+}
+
+.data-table-info td {
+    text-align: right;
+}
+
+.radio-inputs {
+    font-size: 14px;
+}
+
+.radio-inputs {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.radio-label {
+    padding-right: 10px;
+}
+
+.radio-input-label {
+    color: #6d6d72;
+}
+
+
+/*===============================================*/
+
+
+/* 02. HOMEPAGE	 						    	 */
+
+
+/*===============================================*/
+
+.section {
+    border-bottom: 1px solid #efefef;
+    padding-bottom: 15px;
+}
+
+.section.no-border {
+    border-bottom: 0px;
+}
+
+.section.section-with-toolbar-top {
+    padding-bottom: 60px;
+}
+
+.block-no-padding .title-page,
+.block-no-padding .title-section,
+.ios .searchbar-page,
+.section-content {
+    padding-right: 15px;
+}
+
+.block-list-ads .section-content,
+.page-no-padding {
+    padding-right: 0px!important;
+}
+
+.title-page {
+    margin-bottom: 15px;
+}
+
+.subtitle-page {
+    color: #6d6d72;
+}
+
+.title-page a span {
+    position: relative;
+    bottom: 4px;
+    color: #000000;
+    padding-left: 5px;
+}
+
+.title-section {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.title-section i,
+.title-section a {
+    font-size: 12px;
+}
+
+.title-page h1,
+.title-section h3 {
+    margin: 0px;
+    position: relative;
+}
+
+.title-page h1 {
+    font-size: 34px;
+}
+
+.title-section h3 {
+    font-size: 18px;
+}
+
+.title-page-with-link,
+.title-section-with-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section .item-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #000000;
+    margin-top: 5px;
+}
+
+.ios .section .item-title a {
+    color: #000000;
+    font-size: 14px;
+}
+
+.section .item-infos {
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.ios .item-infos a,
+.item-infos {
+    color: #6d6d72;
+}
+
+.item-category {
+    margin-top: 5px;
+}
+
+.ios .item-category a {
+    font-size: 12px;
+    color: #6d6d72;
+    font-weight: 700;
+}
+
+.ios .item-category a i {
+    font-size: 12px;
+}
+
+.section-content .row {
+    padding-bottom: 20px;
+}
+
+.section-content .row:last-child {
+    padding-bottom: 0px;
+}
+
+.sellers-section {
+    text-align: center;
+}
+
+.sellers-section img {
+    display: block;
+    margin: 0px auto;
+}
+
+.section .sellers-section .item-title {
+    font-size: 14px;
+}
+
+.seller-img {
+    width: 100px;
+    height: 100px;
+}
+
+.seller-img-list {
+    width: 64px;
+    height: 64px;
+}
+
+.user-img {
+    width: 40px;
+    height: 40px;
+}
+
+.brand-card {
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.brand-card img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 5px;
+}
+
+.brand-infos {
+    z-index: 2;
+    padding: 20% 20px 20px 20px;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.8) 100%, rgba(0, 0, 0, 0.9) 100%);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: #FFFFFF;
+}
+
+.section .brand-card .item-title {
+    color: #FFFFFF;
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+
+.brand-card .item-infos {
+    color: #FFFFFF;
+}
+
+.searchbar-page {
+    margin-bottom: 30px;
+}
+
+.ios .searchbar-page .searchbar {
+    height: auto;
+    background: transparent;
+}
+
+.ios .searchbar-page .searchbar input {
+    font-size: 14px;
+}
+
+.ios .searchbar-page .searchbar:after {
+    content: "";
+    height: 0px;
+    background: none;
+}
+
+
+/*===============================================*/
+
+
+/* 03. PANEL FILTER	 						    	 */
+
+
+/*===============================================*/
+
+.panel-filter {
+    border-left: 1px solid #DDDDDD;
+}
+
+.item-price-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #6d6d72;
+}
+
+
+/*===============================================*/
+
+
+/* 04. TOOLBAR	 						    	 */
+
+
+/*===============================================*/
+
+.tabs-with-top-toolbar {
+    padding-top: 35px;
+}
+
+.toolbar.toolbar-top {
+    top: 0px;
+    bottom: initial;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.ios .tabbar.toolbar-top a.tab-link-active {
+    border-bottom: 2px solid #DDDDDD;
+    font-weight: 700;
+}
+
+
+/*===============================================*/
+
+
+/* 05. PROFILE	 						    	 */
+
+
+/*===============================================*/
+
+.ios .profile-information .item-subtitle {
+    color: #6d6d72;
+}
+
+.ios .profile-information .item-text {
+    font-size: 12px;
+}
+
+.ios .profile-information .item-title {
+    font-size: 17px;
+}
+
+
+/*===============================================*/
+
+
+/* 06. AD DETAIL	 						     */
+
+
+/*===============================================*/
+
+.ios .single-ad .item-title {
+    padding: 5px 0px 5px 0px;
+}
+
+.ios .single-ad .item-title a {
+    font-size: 17px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.ios .single-ad table {
+    font-size: 12px;
+}
+
+.contact-seller img {
+    margin-bottom: 5px;
+    display: block;
+}
+
+.ios .contact-seller a {
+    color: #000000;
+}
+
+
+/*===============================================*/
+
+
+/* 07. PAGES	 						    	 */
+
+
+/*===============================================*/
+
+.pages-list .item-title span {
+    font-weight: 700;
+}
+
+.pages-list .item-title .item-header {
+    color: #6d6d72;
+}
+
+.item-media-page {
+    width: 42px;
+    height: 42px;
+}
+
+
+/*===============================================*/
+
+
+/* 08. WALKTHROUGH 						    	 */
+
+
+/*===============================================*/
+
+.walk {
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.walk h2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.walk p {
+    font-size: 14px;
+    color: #6d6d72;
+}
+
+.walk img {
+    display: block;
+    margin: 0px auto;
+}
+
+.skipe-pagination {
+    position: absolute;
+    bottom: 12px;
+    right: 15px;
+    font-size: 12px;
+    z-index: 99;
+}
+
+.skipe-pagination a i {
+    font-size: 12px;
+}
+
+
+/*===============================================*/
+
+
+/* 09. LOGIN/SIGN UP	 						 */
+
+
+/*===============================================*/
+
+.ios .login-form .list .item-content {
+    padding-left: 0px;
+}
+
+.forgot-password {
+    text-align: right;
+    font-size: 13px;
+}
+
+.ios .list .item-inner.forgot-password {
+    padding-right: 0px;
+}
+
+.ios .list .item-inner.forgot-password a {
+    color: #6d6d72;
+}
+
+.login-form p {
+    text-align: center;
+    font-size: 13px;
+    color: #6d6d72;
+}
+
+.login-form p img {
+    display: block;
+    margin: 15px auto;
+}
+
+.form-login-annonce {
+    margin-top: 50px;
+}
+
+.form-login-annonce span {
+    color: #ff3b30;
+}
+
+.form-login-footer {
+    margin-top: 50px;
+}

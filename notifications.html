@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#f44336">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+    <title>Lokie</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/framework7.ios.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/framework7@3.5.0/css/framework7.ios.css"> -->
+    <link rel="stylesheet" href="css/icons.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="apple-touch-icon" href="img/f7-icon-square.png">
+    <link rel="icon" href="img/f7-icon.png">
+</head>
+
+<body class="color-theme-purple">
+    <div id="app">
+        <div class="statusbar"></div>
+        <div class="panel panel-left panel-cover">
+            <div class="page">
+                <div class="page-content">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="view view-main view-init ios-edges" data-url="/">
+            <div class="page">
+                <div class="navbar">
+                    <div class="navbar-inner sliding">
+                        <div class="left">
+                            <a href="#" onclick="goBack()" class="link back">
+                                <i class="icon icon-back"></i>
+                                <span class="ios-only">Back</span>
+                            </a>
+                        </div>
+                        <div class="title"></div>
+                    </div>
+                </div>
+                <div class="page-content" id="trustee_page">
+                    <div class="block">
+                        <div class="title-page">
+                            <div class="title-page-with-link">
+                                <h1>Notifications <span class="f7-icons">bell</span></h1>
+                            </div>
+                            <div class="subtitle-page">
+                                Your Notifications
+                            </div>
+                        </div>
+
+                        <div class="list pages-list">
+                            <ul id="notification_list">
+                                <!-- <li>
+                                    <a href="#" class="item-link item-content">
+                                        <div class="item-media"><img src="./img/seller3.png" alt="page1" class="seller-img-list" /></div>
+                                        <div class="item-inner">
+                                            <div class="item-title">
+                                                <span>Anonymous</span>
+                                                <div class="item-header">Click to view</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li> -->
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="js/framework7.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/framework7/4.5.2/js/framework7.min.js" integrity="sha256-TGQ32roI0qkzBrtmvEcwDZq7EPFMmkYabGd/1T+F+YA=" crossorigin="anonymous"></script> -->
+    <script src="js/routes.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/process_invite.js"></script>
+    <script>
+        app.dialog.preloader(); // -> Show preloader
+        const xhr = new XMLHttpRequest();
+        const userEmail = localStorage.userEmail;
+        const auth = ['d73y76t23', '7823ey6dru23', '78ey38e8y6yer', '98ujw8723p8', 'as0lwie'];
+        const randNo = Math.floor(Math.random() * auth.length);
+
+        // go back in history 🧙‍♂️
+        function goBack() {
+            window.history.back();
+        }
+        xhr.open('GET', `https://werefer.com.ng/lokie/php/notification.php?viewNoti=true&userEmail=${userEmail}&auth=${auth[randNo]}`, true);
+        xhr.onload = function() {
+            if (this.status === 200) {
+                data = this.responseText;
+                if (data != "empty") {
+                    document.getElementById('notification_list').innerHTML = data;
+                } else {
+                    document.getElementById('notification_list').innerHTML = "<br>You do not have any new notification<br><br>";
+                }
+                // Close loading dialog
+                app.dialog.close();
+            }
+        }
+        xhr.send();
+        // timeout to check for connection error after 10sec
+        setTimeout(function() {
+            if (xhr.status != 200) {
+                app.dialog.close();
+                app.dialog.alert('Connection Time-out', 'Error');
+            }
+        }, 10000);
+        // mark notification as read
+        function markAsRead(id) {
+            const newXhr = new XMLHttpRequest();
+            newXhr.open('GET', `https://werefer.com.ng/lokie/php/m-a-read.php?not_id=${id}`, true);
+            newXhr.onload = function() {
+                if (this.status === 200) {
+                    var data = this.responseText;
+                    console.log(data)
+                        // app.dialog.alert(`Notification ${id} mark as read`)
+                }
+            }
+            newXhr.send();
+            // timeout to check for connection error after 10sec
+            setTimeout(function() {
+                if (newXhr.status != 200) {
+                    app.dialog.close();
+                    app.dialog.alert('Connection Time-out', 'Error');
+                }
+            }, 10000);
+        }
+    </script>
+</body>
+
+</html>

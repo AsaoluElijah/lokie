@@ -1,0 +1,52 @@
+<div class="page">
+    <div class="navbar" style="position: fixed;">
+        <div class="navbar-inner sliding">
+            <div class="left">
+                <a href="#" class="link back">
+                    <i class="icon icon-back"></i>
+                    <span class="ios-only">Back</span>
+                </a>
+            </div>
+            <div class="title">Meet Someone</div>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="block">
+            <div class="section section-with-toolbar-top no-border">
+                <img src="./illustrations/connect.png" alt="" style="margin:auto;height: 200px;">
+                <div class="list no-hairlines">
+                    <p style="font-weight:bold;">Share Your Real Time Location On Lokie</p>
+                    <p>Enter user info to invite them</p>
+                    <form id="invite-form">
+                        <ul>
+                            <li class="item-content item-input">
+                                <div class="item-inner">
+                                    <div class="item-input-wrap">
+                                        <input placeholder="Enter User Name" autocomplete="off" name="name" type="text">
+                                        <span class="input-clear-button"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <br>
+                            <li class="item-content item-input">
+                                <div class="item-inner">
+                                    <div class="item-input-wrap">
+                                        <input placeholder="Enter Email Address" autocomplete="off" name="email" type="email">
+                                        <span class="input-clear-button"></span>
+                                        <hr style="border: 0.9px solid #eee;">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+                <button onclick="inviteUser();" class="col button button-fill color-blue open-invite-alert" style="height: auto;padding:6px;font-size: 16px;border-radius: 12px;">
+                    <span>
+                        Next
+                    </span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

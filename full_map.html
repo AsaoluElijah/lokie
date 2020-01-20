@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#f44336">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+    <title>Lokie</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/framework7.ios.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/framework7@3.5.0/css/framework7.ios.css"> -->
+    <link rel="stylesheet" href="css/icons.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/eagle.css">
+    <link rel="apple-touch-icon" href="img/f7-icon-square.png">
+    <link rel="icon" href="img/f7-icon.png">
+    <style>
+        #map {
+            width: auto;
+            height: 400px;
+            /* display: none; */
+            background: #e5e9e8;
+            background-image: url('img/new/spinner.gif');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+
+<body class="color-theme-purple">
+    <div id="app">
+        <div class="statusbar"></div>
+        <div class="panel panel-left panel-cover">
+            <div class="page">
+                <div class="page-content">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="view view-main view-init ios-edges" data-url="/">
+            <div class="page">
+                <div class="navbar">
+                    <div class="navbar-inner sliding">
+                        <div class="left">
+                            <a href="#" class="link back">
+                                <i class="icon icon-back"></i>
+                                <span class="ios-only">Close</span>
+                            </a>
+                        </div>
+                        <div class="title">Invitation Sent 📌</div>
+                    </div>
+                </div>
+
+                <div class="toolbar tabbar tabbar-labels">
+                    <div class="toolbar-inner">
+                        <a href="index.html" class="tab-link tab-link-active external">
+                            <i class="material-icons">home</i>
+                            <span class="tabbar-label">Home</span>
+                        </a>
+                        <a href="trustee.html" class="tab-link link external">
+                            <i class="material-icons">supervisor_account</i>
+                            <span class="tabbar-label">Trustees</span>
+                        </a>
+                        <a href="explore.html" class="tab-link external">
+                            <i class="material-icons">explore</i>
+                            <span class="tabbar-label">Explore</span>
+                        </a>
+                        <a href="notifications.html" class="tab-link external">
+                            <i class="icon material-icons">notifications
+                                <span class="badge color-red" id="notification-badge" style="height: 8px;min-width: 8px;display: none;"></span>
+                            </i>
+                            <span class="tabbar-label">Notification</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="page-content">
+                    <div class="block">
+                        <div class="title-page">
+                            <div class="title-page-with-link">
+                                <h1>Invitation Sent <i class="f7-icons">radiowaves</i></h1>
+                            </div>
+                            <div class="subtitle-page my-desc">Waiting for <span id="inviteEmail"></span> to confirm their invitation. Once confirmed, your locations will be shared real time below (This is automated)</div>
+                        </div>
+
+                        <div id="map" class="meet-map"></div>
+
+                    </div>
+
+                    <div class="fab fab-right-bottom color-purple" style="position: fixed;">
+                        <a href="#">
+                            <!-- Icons For iOS Theme -->
+                            <i class="icon f7-icons if-not-md">add</i>
+                            <i class="icon f7-icons if-not-md">close</i>
+                        </a>
+                        <!-- FAB speed dial actions -->
+                        <div class="fab-buttons fab-buttons-top">
+                            <a href="#" class="fab-label-button">
+                                <!-- open chat page -->
+                                <span onclick="stopSharing()">
+                                    <i class="material-icons">warning</i>
+                                </span>
+                                <span class="fab-label">Stop Sharing</span>
+                            </a>
+                            <a href="#" class="fab-label-button">
+                                <!-- open chat page -->
+                                <span>
+                                    <i class="material-icons">chat</i>
+                                </span>
+                                <span class="fab-label">Chat with user(s)</span>
+                            </a>
+                            <a href="#" class="fab-label-button popup-open add-user" data-popup=".popup-addNew">
+                                <!-- invite another user to sharing -->
+                                <span>
+                                    <i class="material-icons">supervisor_account</i>
+                                </span>
+                                <span class="fab-label">Add another user</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <div class="fab fab-left-bottom color-pink" id="meet-user-fab" style="position: fixed;display: none;">
+                        <a href="#">
+                            <!-- Icons For iOS Theme -->
+                            <i class="icon f7-icons if-not-md">unlock</i>
+                            <i class="icon f7-icons if-not-md">close</i>
+                        </a>
+                        <!-- FAB speed dial actions -->
+                        <div class="fab-buttons fab-buttons-top">
+                            <a href="#" class="fab-label-button">
+                                <!-- open chat page -->
+                                <span>
+                                    <i class="material-icons">supervisor_account</i>
+                                </span>
+                                <span class="fab-label">Meet User 1</span>
+                            </a>
+                            <a href="#" class="fab-label-button popup-open add-user" data-popup=".popup-addNew">
+                                <!-- invite another user to sharing -->
+                                <span>
+                                    <i class="material-icons">supervisor_account</i>
+                                </span>
+                                <span class="fab-label">Meet User 2</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="popup popup-addNew">
+                        <div class="block">
+                            <p>
+                                <!-- Close Popup -->
+                                <a class="link popup-close" href="#">
+                                    <i class="icon f7-icons if-not-md">close</i>
+                                </a>
+                            </p>
+                            <div style="margin-top: 20px;">
+                                <h2>Invite Another User</h2>
+                                <p>Enter User Info To Add Them</p>
+                                <br>
+                                <li class="item-content item-input hairlines" style="list-style-type: none;">
+                                    <div class="item-inner">
+                                        <div class="item-input-wrap">
+                                            <form>
+                                                <input placeholder="Enter User Name" style="width: 100%;" id="name" type="text">
+                                                <!-- <span class="input-clear-button"></span> -->
+                                            </form>
+                                        </div>
+                                    </div>
+                                </li>
+                                <br><br>
+                                <li class="item-content item-input hairlines" style="list-style-type: none;">
+                                    <div class="item-inner">
+                                        <div class="item-input-wrap">
+                                            <form>
+                                                <input placeholder="Enter Email Address" style="width: 100%;" id="email" type="email">
+                                                <!-- <span class="input-clear-button"></span> -->
+                                            </form>
+                                        </div>
+                                    </div>
+                                </li>
+                                <br><br>
+                                <button onclick="inviteNewUser();" class="col button button-fill color-red open-invite-alert">Next</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="js/framework7.min.js"></script>
+    <script src="js/routes.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/initMap.js"></script>
+    <script src="js/initDirection.js"></script>
+    <script src="js/loc-prompt.js"></script>
+    <script>
+        // set invite email
+        var inviteName = localStorage.inviteName;
+        var inviteEmail = localStorage.inviteEmail;
+        // ...
+        var inviteHash = localStorage.inviteHash; //invite key
+        var inviteEmail2, inviteName2; // Email of the second user;
+        var userAccepted, result, ajaxResponse;
+
+        // set hostEmail
+        var hostEmail = localStorage.hostEmail;
+
+        // set all to false by default
+        var bothAccept = false,
+            user2Accept = false,
+            user2Long = false,
+            user2Lat = false,
+            user3Accept = false,
+            user3Long = false,
+            user3Lat = false;
+        document.querySelector('#inviteEmail').innerHTML = inviteName;
+
+        if (localStorage.inviteEmail2 != undefined) {
+            inviteEmail2 = localStorage.inviteEmail2;
+        }
+        // Function to check if user has accepted invitation
+        var inviteTimer = setInterval(function() {
+                app.request.get('https://werefer.com.ng/lokie/php/checkInvite.php', {
+                        checkInvite: true,
+                        user1: localStorage.hostEmail,
+                        user2: localStorage.inviteEmail,
+                        user3: localStorage.inviteEmail2 || '',
+                        key: localStorage.inviteHash || null
+                    },
+                    function(data) {
+                        // console.log(data);
+                        ajaxResponse = data;
+                        if (data != "false") {
+                            result = JSON.parse(data);
+                            userAccepted = result.accept;
+                            if (userAccepted === 'user2') {
+                                user2Accept = true;
+                                user2Long = Number(result.longitude);
+                                user2Lat = Number(result.latitude);
+                            }
+                            if (userAccepted === 'user3') {
+                                user3Accept = true;
+                                user3Long = Number(result.longitude);
+                                user3Lat = Number(result.latitude);
+                            }
+                            if (userAccepted === 'user2 and user3') {
+                                user2Accept = true;
+                                user3Accept = true;
+                                bothAccept = true;
+                                // @user2_info
+                                user2Long = Number(result.user2_longitude);
+                                user2Lat = Number(result.user2_latitude);
+                                // @user3_info
+                                user3Long = Number(result.user3_longitude);
+                                user3Lat = Number(result.user3_latitude);
+                                // stop the interval
+                                clearInterval(inviteTimer);
+                            } else {
+                                userAccepted = 'none';
+                            }
+                        }
+                    });
+            },
+            500);
+
+        var user2Timer = setInterval(() => {
+            if (user2Accept == true) {
+                user2LatLong = {
+                    lat: user2Lat,
+                    lng: user2Long
+                }
+                app.dialog.alert(inviteName + ' accepted your invitation', 'Success', function() {
+                    // app.dialog.preloader();
+                    // code to show this 2 users marker;
+                    document.querySelector('#meet-user-fab').style.display = 'block';
+                    // Display Marker
+                    // var iconImage = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+                    // add icon object to use customizied icon
+                    var user2Marker = new google.maps.Marker({
+                        position: user2LatLong,
+                        title: "User 2",
+                        label: 'A'
+                    });
+                    // To add the marker to the map, call setMap();
+                    user2Marker.setMap(map);
+                    // .....
+                });
+                clearInterval(user2Timer);
+            }
+        }, 3000)
+        var user3Timer = setInterval(() => {
+            if (user3Accept == true) {
+                user3LatLong = {
+                    lat: user3Lat,
+                    lng: user3Long
+                }
+                app.dialog.alert(inviteName2.toLowerCase() + ' accepted your invitation', 'Success', function() {
+                    // app.dialog.preloader();
+                    // code to show this 2 users marker;
+                    document.querySelector('#meet-user-fab').style.display = 'block';
+                    // Display Marker
+                    var user3Marker = new google.maps.Marker({
+                        position: user3LatLong,
+                        title: "User 3"
+                    });
+                    // To add the marker to the map, call setMap();
+                    user3Marker.setMap(map);
+                    // .....
+                });
+                clearInterval(user3Timer)
+            }
+        }, 3000)
+
+        function stopSharing() {
+            var inform = app.dialog.confirm('Are you sure you want to stop sharing location', 'Notice');
+            if (inform) {
+                // code to update db and set  closed to true where users = and key =
+                app.dialog.alert('Location sharing stoppped successfully');
+            }
+        }
+
+        function inviteNewUser() {
+            app.dialog.preloader('Loading, Please Wait');
+            const xhr = new XMLHttpRequest();
+            let name = document.getElementById('name').value;
+            let email = document.getElementById('email').value;
+            if (name === '') {
+                app.dialog.close();
+                app.dialog.alert('User name is required', 'Error');
+            } else if (validateEmail(email) != false) {
+                inviteName2 = name;
+                let inviteHash = this.inviteHash;
+                let sender = localStorage.userEmail;
+                let senderName = localStorage.userName
+                xhr.open('GET', `./php/PHPMailer/invite2.php?sender=${sender}&email=${email}&senderName=${senderName}&key=${inviteHash}&invite=true`, true);
+                xhr.onload = function() {
+                    if (this.status === 200) {
+                        data = this.responseText;
+                        if (data != 'false') {
+                            app.dialog.close();
+                            localStorage.inviteEmail2 = email;
+                            app.dialog.alert('Invitation Sent', 'Success', function() {
+                                // window.location.reload();
+                                document.querySelector('.my-desc').innerHTML = `
+                                    Waiting for ${inviteName2} And ${inviteName} to accept your invitation  (This is automated)`;
+                                document.querySelector('.add-user').style.display = 'none';
+                                // change desc to waiting for ... and ... to accept your invite,......
+                                // and disable or hide add new user button 📌
+                            });
+                        } else {
+                            // console.log('failed');
+                            app.dialog.close();
+                            app.dialog.alert('Sending Invitation Failed', 'Error', function() {
+                                window.location.reload();
+                            });
+                        }
+                    }
+                }
+                xhr.send();
+            } else {
+                app.dialog.close();
+                app.dialog.alert('Invalid Email Address', 'Error')
+            }
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmwbZFOM6zFZpFMOng9mZMc-UzQtXvsaU&callback=initMap">
+    </script>
+</body>
+
+</html>

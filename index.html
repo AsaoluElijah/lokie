@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#2e313f">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src *; style-src *  'unsafe-inline'; script-src *  'unsafe-inline'; media-src *"> -->
+    <title>Lokie</title>
+    <link rel="stylesheet" href="css/framework7.ios.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/framework7@3.5.0/css/framework7.ios.css"> -->
+    <link rel="stylesheet" href="css/icons.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/eagle.css">
+    <link rel="apple-touch-icon" href="img/f7-icon-square.png">
+    <link rel="icon" href="img/f7-icon.png">
+    <style>
+        .card-outline {
+            background: #8f3bff;
+            color: #fff;
+            box-shadow: 0px 1px 10px 0px #8f3bff !important;
+            border-radius: 7px;
+            border: 0px solid !important;
+            outline: 0px !important;
+            padding: 10px;
+        }
+    </style>
+    <!-- PUSH.JS FRAMEWORK -->
+    <!-- <script src="push/push.js"></script> -->
+    <script>
+        // Redirect to walkthrough(onboarding page) if it has not been viewed,
+        // else redirect to login page
+        if (localStorage.viewedWalkThrough != "true") {
+            location.href = 'walk.html';
+        } else if (localStorage.userdata == 'undefined') {
+            location.href = 'login.html';
+        }
+    </script>
+</head>
+
+<body class="color-theme-purple">
+    <div id="app">
+        <div class="statusbar"></div>
+        <div class="panel panel-left panel-cover">
+            <div class="page">
+                <div class="page-content">
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-right panel-cover panel-filter">
+            <div class="navbar">
+                <div class="navbar-inner sliding">
+                    <div class="title">MENU</div>
+                </div>
+            </div>
+            <div class="page">
+
+                <div class="page-content">
+                    <div class="list">
+                        <ul>
+                            <li style="margin-top: 20px;">
+                                <a href="explore.html" class="link external item-link item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">Explore</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li style="margin-top: 20px;">
+                                <a href="/invite/" class="item-link item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">Meet Someone</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li style="margin-top: 20px;">
+                                <a href="trustee.html" class="link external item-link item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">My Trustee</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li style="margin-top: 20px;" onclick="logout()">
+                                <a href="#" class="item-link item-content">
+                                    <div class="item-media color-blue"><i class="material-icons">settings</i>
+                                    </div>
+                                    <div class="item-inner">
+                                        <div class="item-title">Logout</div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="view view-main view-init ios-edges" data-url="/">
+            <div class="page">
+
+                <div class="toolbar tabbar tabbar-labels">
+                    <div class="toolbar-inner">
+                        <a href="/" class="tab-link tab-link-active">
+                            <i class="material-icons">home</i>
+                            <span class="tabbar-label">Home</span>
+                        </a>
+                        <a href="trustee.html" class="tab-link link external">
+                            <i class="material-icons">supervisor_account</i>
+                            <span class="tabbar-label">Trustees</span>
+                        </a>
+                        <a href="explore.html" class="tab-link external">
+                            <i class="material-icons">explore</i>
+                            <span class="tabbar-label">Explore</span>
+                        </a>
+                        <a href="notifications.html" class="tab-link external">
+                            <i class="icon material-icons">notifications
+                                <span class="badge color-red" id="notification-badge" style="height: 8px;min-width: 8px;display: none;"></span>
+                            </i>
+                            <span class="tabbar-label">Notification</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- <div class="navbar navbar-large">
+                    <div class="navbar-bg"></div>
+                    <div class="navbar-inner">
+                        <div class="left">
+                            <a href="#" class="link panel-open" data-panel="right">
+                                <i class="material-icons" style="font-size: 30px;">menu</i>
+                            </a>
+                        </div>
+                        <div class="title" style="font-size: 25px;">
+                            LOKIE
+                        </div>
+                        <div class="right">
+                            <a href="profile.html" class="link external">
+                                <i class="material-icons" style="font-size: 30px;border: 2px solid #007aff;border-radius: 50px;">person</i>
+                            </a>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="page-content">
+                    <div class="block">
+                        <div class="title-page">
+                            <div class="title-page-with-link">
+                                <h1 id="my_app_name">Lokie</h1>
+                                <a class="link external icon-only" href="profile.html">
+                                    <img src="./img/new/avatar.png" alt="user" class="user-img">
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Action Button -->
+                        <div class="send-alert">
+                            <center>
+                                <i class="material-icons send-alert-icon" onclick="sendAlert()">info</i>
+                            </center>
+                        </div>
+                        <br>
+                        <!-- ... -->
+                        <div class="card card-outline card-expandable">
+                            <div class="card-content card-content-padding">
+                                <div class="list media-list">
+                                    <ul>
+                                        <li class="item-content">
+                                            <div class="item-media"><img src="https://cdn2.iconfinder.com/data/icons/flat-line-valentine-1/1010/smartphone-heart-256.png" width="44" /></div>
+                                            <div class="item-inner">
+                                                <div class="item-title-row">
+                                                    <div class="item-title">Your Trustees</div>
+                                                    <div class="item-after">
+                                                        <a class="f7-icons link external" href="trustee.html" style="color: #fff;">add</a>
+                                                    </div>
+                                                </div>
+                                                <!-- <br> -->
+                                                <div class="item-subtitle"><small>3/5</small></div>
+                                                <br>
+                                                <div class="item-text">
+                                                    <div style="height: 7px; background: #fff;" class="progressbar color-red" data-progress="70"></div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .... -->
+                        <div class="section">
+                        </div>
+                        <!-- Quick Action Section -->
+                        <div class="section">
+                            <div class="title-section">
+                                <div class="title-section-with-link">
+                                    <h3>Quick Actions</h3>
+                                </div>
+                            </div>
+                            <div class="section-content">
+                                <div data-pagination="{&quot;el&quot;: &quot;.swiper-pagination&quot;}" data-space-between="15" data-slides-per-view="3" class="swiper-container swiper-init swiper-container-horizontal swiper-container-ios">
+                                    <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
+                                        <div class="swiper-slide swiper-slide-next" style="width: 118px; margin-right: 15px;">
+                                            <a href="/invite/"><img src="./img/cat2.png" alt="cat2"></a>
+                                            <div class="item-title"><a href="#">Meet Someone</a></div>
+                                        </div>
+                                        <div class="swiper-slide" style="width: 118px; margin-right: 15px;">
+                                            <a class="link external" href="trustee.html"><img src="./img/cat3.png" alt="cat3"></a>
+                                            <div class="item-title"><a href="#">My Trustees</a></div>
+                                        </div>
+                                        <div class="swiper-slide swiper-slide-active" style="width: 118px; margin-right: 15px;">
+                                            <a class="link external" href="explore.html"><img src="./img/cat1.png" alt="cat1"></a>
+                                            <div class="item-title"><a href="#">Places Near Me</a></div>
+                                        </div>
+                                    </div>
+                                    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Page for user to view who added them as trustee -->
+                        <div class="section">
+                            <div class="title-section">
+                                <div class="title-section-with-link">
+                                    <h4>View who added you as their trustee</h4>
+                                </div>
+                            </div>
+                            <div class="section-content">
+                                <a href="added_you.html" class="link external col button button-fill color-blue open-invite-alert" style="height: auto;padding:6px;font-size: 16px;border-radius: 9px;">
+                                    <i class="material-icons">trending_flat</i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- ....Popup -->
+
+                        <div class="popup popup-proVersion">
+                            <div class="block">
+                                <p>
+                                    <!-- Close Popup -->
+                                    <a class="link popup-close" href="#">
+                                        <i class="icon f7-icons if-not-md">close</i>
+                                    </a>
+                                </p>
+                                <div style="margin-top: 20px;font-weight: lighter;">
+                                    <h2 style="font-weight: normal;">Lokie Pro 🚀</h2>
+                                    <p>Do more with the pro version</p>
+                                    <!-- change to carousel 📌 -->
+                                    <img src="illustrations/fogg-message-sent.png" alt="">
+                                    <ul>
+                                        <li>Send More Daily Alert</li>
+                                        <li>Unlock AR/VR experience in explore section</li>
+                                        <li>Share location with multiple users</li>
+                                        <li>Add more than 5 trustee and <a href="">more</a> cool features</li>
+                                    </ul>
+                                    <br><br>
+                                    <button class="col button button-fill color-red open-invite-alert">Go Pro</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ....Popup end -->
+
+                        <!-- brands Section -->
+                        <div class="section no-border">
+                            <div class="title-section">
+                                <div class="title-section-with-link">
+                                    <h3>From Our Blog</h3>
+                                    <a href="//">See all <i class="f7-icons">chevron_right</i></a>
+                                </div>
+                            </div>
+                            <div class="section-content">
+                                <div data-pagination="{&quot;el&quot;: &quot;.swiper-pagination&quot;}" data-space-between="15" data-slides-per-view="1.5" class="swiper-container swiper-init swiper-container-horizontal">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <a href="#">
+                                                <div class="brand-card">
+                                                    <img src="./img/brand1.png" alt="brand1">
+                                                    <div class="brand-infos">
+                                                        <div class="item-title">Lokie, Get Started</div>
+                                                        <div class="item-infos">Learn how to get the best off lokie
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                        <div class="swiper-slide">
+                                            <a href="#">
+                                                <div class="brand-card">
+                                                    <img src="./img/brand1.png" alt="brand2">
+                                                    <div class="brand-infos">
+                                                        <div class="item-title">Meet Someone</div>
+                                                        <div class="item-infos">Share real-time location on lokie</div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="js/framework7.min.js"></script>
+    <script src="js/routes.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/initmap.js"></script>
+    <!-- JS CODE SHOULD BE AFTER REQUIRED JS FILES -->
+    <script>
+        setTimeout(() => {
+            app.popup.open('.popup-proVersion', true);
+        }, 40000);
+
+        var userName = localStorage.userName;
+        var userEmail = localStorage.userEmail;
+        var userId = localStorage.userId;
+
+        function sendAlert() {
+            app.dialog.preloader('Loading, please wait');
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET',
+                `https://werefer.com.ng/lokie/php/mail/send_alert.php?sendAlert=true&userName=${userName}&userEmail=${userEmail}&userId=${userId}`,
+                true);
+            xhr.onload = function() {
+                if (this.status === 200) {
+                    data = this.responseText;
+                    console.log(data);
+                    var regex = /(false)/
+                    var check = regex.test(data);
+                    if (check == true) {
+                        // console.log('Unable to send notification');
+                        app.dialog.close();
+                        app.dialog.alert('Unable to send notification', 'Error');
+                    } else if (data == 'You have no trustee') {
+                        app.dialog.close();
+                        app.dialog.alert('You currently do not have any trustee', 'Error');
+                    } else {
+                        document.querySelector('.send-alert-icon').style.color = "#F44336";
+                        app.dialog.close();
+                        app.dialog.alert('Notification Sent', 'Success');
+                        // console.log(data);
+                    }
+                } else if (this.status === 404) {
+                    // Close loading dialog
+                    app.dialog.close();
+                    app.dialog.alert('Internal Server Error', 'Error 404');
+                } else if (this.status === 503) {
+                    // Close loading dialog
+                    app.dialog.close();
+                    app.dialog.alert('Service Currently Unavailable', 'Error 503');
+                } else if (this.status === 504) {
+                    // Close loading dialog
+                    app.dialog.close();
+                    app.dialog.alert('Gateway Timeout', 'Error 504');
+                }
+            }
+            xhr.send();
+            connTimeout(xhr)
+        }
+        // Function to toogle satellite view 
+        function toogleSatellite() {
+            if (map.mapTypeId == "roadmap") {
+                map.setMapTypeId('satellite');
+            } else {
+                map.setMapTypeId('roadmap');
+            }
+        }
+
+        // function to show new notification icon
+        setInterval(function() {
+            let newXhr = new XMLHttpRequest();
+            newXhr.open('GET', `https://werefer.com.ng/lokie/php/notification.php?checkNewNot=true&userEmail=${userEmail}`, true);
+            newXhr.onload = function() {
+                if (this.status === 200) {
+                    var data = this.responseText;
+                    // console.log(data);
+                    if (data == 'new') {
+                        document.getElementById('notification-badge').style.display = 'block';
+                    }
+                }
+            }
+            newXhr.send();
+        }, 5000);
+    </script>
+    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmwbZFOM6zFZpFMOng9mZMc-UzQtXvsaU&callback=initMap">
+    </script> -->
+</body>
+
+</html>

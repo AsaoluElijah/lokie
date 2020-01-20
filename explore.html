@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#f44336">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+    <title>Lokie</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/framework7.ios.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/framework7@3.5.0/css/framework7.ios.css"> -->
+    <link rel="stylesheet" href="css/icons.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/eagle.css">
+    <link rel="apple-touch-icon" href="img/f7-icon-square.png">
+    <link rel="icon" href="img/f7-icon.png">
+    <style>
+        @keyframes bubble {
+            10% {
+                background: rgba(17, 91, 252, 0.151);
+            }
+            20% {
+                background: #0026ff3a;
+            }
+            30% {
+                background: #3700ff36;
+            }
+        }
+        
+        .send-alert-icon {
+            padding: 17px;
+            color: #007aff;
+            font-size: 50px;
+            background: rgba(0, 47, 255, 0.13);
+            border-radius: 50px;
+            animation-name: bubble;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+        }
+    </style>
+</head>
+
+<body class="color-theme-purple" onload="showLoader()">
+    <div id="app">
+        <div class="statusbar"></div>
+        <div class="panel panel-left panel-cover">
+            <div class="page">
+                <div class="page-content">
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-right panel-cover panel-filter">
+            <div class="navbar">
+                <div class="navbar-inner sliding">
+                    <div class="title">MENU</div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="page-content">
+                    <div class="list">
+                        <ul>
+                            <li style="margin-top: 20px;">
+                                <a href="explore.html" class="link external item-link item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">Explore</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li style="margin-top: 20px;">
+                                <a href="/invite/" class="item-link item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">Meet Someone</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li style="margin-top: 20px;">
+                                <a href="trustee.html" class="link external item-link item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">My Trustee</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li style="margin-top: 20px;" onclick="logout()">
+                                <a href="#" class="item-link item-content">
+                                    <div class="item-media color-blue"><i class="material-icons">power_settings_new</i></div>
+                                    <div class="item-inner">
+                                        <div class="item-title">Logout</div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- <div class="list links-list">
+                            <ul>
+                                <li><a href="#">Explore</a></li>
+                                <li><a href="#">Meet Someone</a></li>
+                                <li><a href="#">My Trustees</a></li>
+    
+                                <li><a href="#">Logout</a></li>
+                            </ul>
+                        </div> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="view view-main view-init ios-edges" data-url="/">
+            <div class="page no-navbar">
+
+                <div class="toolbar tabbar tabbar-labels">
+                    <div class="toolbar-inner">
+                        <a href="index.html" class="tab-link external">
+                            <i class="material-icons">home</i>
+                            <span class="tabbar-label">Home</span>
+                        </a>
+                        <a href="trustee.html" class="tab-link link external">
+                            <i class="material-icons">supervisor_account</i>
+                            <span class="tabbar-label">Trustees</span>
+                        </a>
+                        <a href="explore.html" class="tab-link external tab-link-active">
+                            <i class="material-icons">explore</i>
+                            <span class="tabbar-label">Explore</span>
+                        </a>
+                        <a href="notifications.html" class="tab-link external">
+                            <i class="icon material-icons">notifications
+                                <span class="badge color-red" id="notification-badge" style="height: 8px;min-width: 8px;display: none;"></span>
+                            </i>
+                            <span class="tabbar-label">Notification</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="page-content lazy lazy-fade-in">
+                    <div class="block block-list-ads">
+                        <div class="title-page">
+                            <div class="title-page-with-link">
+                                <h1>Explore</h1>
+                            </div>
+                            <!-- <p>Some place you may wish to visit near <span id="city">Ikeja</span></p> -->
+                        </div>
+
+                        <div class="section no-border">
+                            <div style="margin-top: 30px;">
+                                <img src="img/new/welcome-3.gif" alt="Constructing Image">
+                                <h2>
+                                    <center>Coming Soon...</center>
+                                </h2>
+                                <p>Sit tight, we are working to make the explore page more awesome for you, you'll be notified once this is rolled in.</p>
+                            </div>
+                            <!-- <div class="section-content">
+                                <div class="row">
+                                    <div class="col">
+                                        <a href="/explore_single/"><img src="./img/product1.png" alt="product1" class="lazy"></a>
+                                        <div class="item-title"><a href="/ad_detail/">Lekki Beach</a></div>
+                                    </div>
+                                    <div class="col">
+                                        <a href="/explore_single/"><img src="./img/product2.png" alt="product2" class="lazy"></a>
+                                        <div class="item-title"><a href="/ad_detail/">Eko Hotel</a></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <a href="/explore_single/"><img src="./img/product3.png" alt="product3" class="lazy"></a>
+                                        <div class="item-title"><a href="/ad_detail/">Kuramo Beach</a></div>
+                                    </div>
+                                    <div class="col">
+                                        <a href="/explore_single/"><img src="./img/product4.png" alt="product4" class="lazy"></a>
+                                        <div class="item-title"><a href="/ad_detail/">AAA Waterfall</a></div>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/framework7.min.js"></script>
+    <script src="js/routes.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        app.request.get('php/poi.php',
+            function(data) {
+                console.log(data);
+            });
+    </script>
+</body>
+
+</html>
