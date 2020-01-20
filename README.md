@@ -1,6 +1,6 @@
 # LOKIE
 Getting you closer to the people you trust.
-<img src="./icon.png" style="width: 70px;height: 70px;" />
+<img src="./icon.png" style="width: 50px;height: 50px;" />
  __________
 ## The Problem 
 Lokie was inspired by the rate at which kidnapping situations has prevailed in Nigeria over the last few decades. 
