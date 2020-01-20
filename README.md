@@ -1,6 +1,6 @@
 # LOKIE
 Getting you closer to the people you trust.
-<img src="./icon.png" />
+<img src="./icon.png" style="width: 70px;height: 70px;" />
  __________
 ## The Problem 
 Lokie was inspired by the rate at which kidnapping situations has prevailed in Nigeria over the last few decades. 
@@ -19,3 +19,6 @@ it can be easily accessed.
 ## Other Features
 * Location Sharing - Remotely share your location between 2-3 users.
 * Explore Features - Get to know more about popular/rural cities with AR + VR experience.
+
+## Author
+Made With ❤ By Asaolu Elijah
