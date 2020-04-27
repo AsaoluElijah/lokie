@@ -37,8 +37,8 @@ class App extends Connect
         if ($checkEmail == "yes") {
             return "exist";
         } else {
-            // $pwd = $password;
-            // $password = sha1($password);
+
+            $password = sha1($password);
             // $connection = connect();
             $query = "INSERT INTO user(name,email,password)
                 VALUES('$name','$email','$password')";
@@ -131,7 +131,7 @@ class App extends Connect
 
     function login($email, $password)
     {
-        // $connection = $this->connect();
+        $password = sha1($password);
         $query = "SELECT * FROM user WHERE email = '$email' AND password = '$password' ";
         // $result = mysqli_query($connection,$query);
         $result =  $this->connect()->query($query);
