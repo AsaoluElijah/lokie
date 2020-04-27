@@ -22,5 +22,10 @@ it can be easily accessed.
 * Location Sharing - Remotely share your location between 2-3 users.
 * Explore Features - Get to know more about popular/rural cities with AR + VR experience.
 
-## Author
+## Screenshots
+### Onboarding pages
+![Lokie](https://raw.githubusercontent.com/AsaoluElijah/lokie/v-3.0/screenshots/Copy%20of%20Untitled.png)
+### Main Pages
+![Lokie](https://raw.githubusercontent.com/AsaoluElijah/lokie/v-3.0/screenshots/Copy%20of%20Untitled%20(2).png)
+## Authors
 Made With ❤ By Asaolu Elijah
