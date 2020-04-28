@@ -27,5 +27,3 @@ it can be easily accessed.
 ![Lokie](https://raw.githubusercontent.com/AsaoluElijah/lokie/v-3.0/screenshots/Copy%20of%20Untitled.png)
 ### Main Pages
 ![Lokie](https://raw.githubusercontent.com/AsaoluElijah/lokie/v-3.0/screenshots/Copy%20of%20Untitled%20(2).png)
-## Authors
-Made With ❤ By Asaolu Elijah
